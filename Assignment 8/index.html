@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assingment SaltnPepper</title>
+        <link rel="icon" href=".\images\site-icon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+           <a href="index.html"> 
+	<img width="165px" src=".\images\logo.webp" class="web-logo">
+           </a>
+        </div>
+        <div class="navLinks">
+<a href="#">Home</a>
+<a href="#">About Us</a>
+<a href="#">Publications</a>
+<a href="#">Feedback</a>
+<a href="#" class="spa"><span class="first">Get a Franchise</span></a>
+	<span class="second">
+		<a class="neigh" href="#">Order Online</a>
+		<button class="white" href="#"><img src=".\images\arrow-right-solid.svg" ></button>
+	</span>
+        </div>
+    </header>
+    
+    
+ <a href="#"><div class="mySlides slider"><img src=".\images\s1.webp" 	class="figure-img w-100 h-auto cover"></div></a>
+  <a href="#"><img class="mySlides" src=".\images\s2.webp" 		class="figure-img w-100 h-auto cover"></a>
+  <a href="#"></a><img class="mySlides" src=".\images\s3.webp" 		class="figure-img w-100 h-auto cover"></a>
+  <a href="#"><img class="mySlides" src=".\images\s4.webp" 		class="figure-img w-100 h-auto cover"></a>
+  
+  
+    <center><div class="main">
+    <h2>
+        Welcome to
+        <span class="newfont">Salt'n Pepper</span>
+        <br>
+        Restaurants! Our Brands
+    </h2>
+    <p>Please click our brands below for further information, reservations or to order online!</p> 
+  <div class="box-one">
+    <a href="#"><div class="img"> <img class="lazy" src=".\images\b1.webp"></div></a>
+    <a href="#"><button class="btn">Order Now</button></a>
+    </div>
+    <div class="box-two">
+        <a href="#">   <div class="img"> <img class="lazy" src=".\images\b2.webp"></div></a>
+        <a href="#"><button class="btn">Order Now</button></a>
+    </div>
+    <div class="box-three">
+        <a href="#">  <div class="img"><img class="lazy" src=".\images\b3.webp"></div></a>
+        <a href="#"><button class="btn">Reserve a Table</button></a>
+    </div>
+</div>
+</center>
+
+
+<script>
+
+var slideIndex = 0;
+    
+    function slide() {
+      var i;
+      var x = document.getElementsByClassName("mySlides");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      
+      slideIndex++;
+      if (slideIndex > x.length)
+      {slideIndex = 1}
+      
+      x[slideIndex-1].style.display = "block";
+      setTimeout(slide, 3000);
+      }
+    
+    slide();
+    
+    </script>
+</body>
+</html>   
+
+
+
