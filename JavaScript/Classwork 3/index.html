@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMIT JS 9/20</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .count {
+            font-size: 24px;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #eaeaea;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .centh1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .buttoncool {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buttoncool:hover {
+            background-color: #2980b9;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            color: rgba(141, 141, 141, 0.5); /* Light color with transparency */
+            pointer-events: none; /* Allow clicks to go through the watermark */
+        }
+        
+        .output {
+            background-color: #eaeaea;
+            color: #0f0;
+            font-family: 'Comic Sans MS', cursive;
+            height: fit-content;
+            padding: 10px;
+            width: 100%;
+            white-space: pre-wrap; /* Allows wrapping */
+            word-wrap: break-word; /* Breaks long words */
+        }
+
+        .output.active {
+            background-color: black; /* Change to black when active */
+        }
+        
+        .backbutt_loc{
+            position: fixed;
+            bottom: 5px;
+            left: 5px;
+        }
+
+        .backbutt_mod{
+            background-color: #b9baba88;
+            color: #333;
+            border: none;
+            padding: 5px 5px;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .backbutt_mod:hover {
+            box-shadow: 200px solid gray;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>JS 9/20 - SMIT Class Work 3</h1>
+    <div class="question">
+    <button class="buttoncool" onclick="mathop()">Math Operation</button>
+    <div class ='output' id="mathop"></div>
+    </div>
+
+
+    <div class="watermark">Code by Adeem Amir</div>
+
+    <div class="backbutt_loc">
+        <button class='backbutt_mod' onclick="gotoBack()">Back</button>
+        <button class='backbutt_mod' onclick="gotoHome()">Home</button>
+    </div>
+</body>
+</html>
+
+<script src=".\script.mjs"></script>
