@@ -3,135 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>SMIT Curriculum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .cfix {
+        line-height: 1;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        h2 {
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .assignment-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .assignment-list li {
+            margin-bottom: 10px;
+        }
+        .assignment-list li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+        .assignment-list li a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="header">
+    <div class="container cfix">
         <h1>SMIT Curriculum</h1>
         <h1>Adeem Amir (271965)</h1>
-    </div>
-    <div class="container">
-        <a href="HTML/index.html" class="card">
-            <img src=".\HTML\HTML.jpg" alt="HTML Logo" class="logo">
-            <h2>HTML</h2>
-            <p>HTML is the standard markup language for creating web pages.</p>
-        </a>
-        <a href="CSS/index.html" class="card">
-            <img src=".\CSS\CSS.jpg" alt="CSS Logo" class="logo">
-            <h2>CSS</h2>
-            <p>CSS is a stylesheet language used to describe the presentation of a document.</p>
-        </a>
-        <a href="JavaScript/index.html" class="card">
-            <img src=".\JavaScript\JavaScript.jpg" alt="JavaScript Logo" class="logo">
-            <h2>JavaScript</h2>
-            <p>JavaScript is a programming language that enables interactive web pages.</p>
-        </a>
-    </div>
-    <div class="container">
-    <a href="https://adeemamir.github.io/SMIT-Mini-Hackathon/" class="card cont_slim_ovr"><h1 style='font-family:Comic Sans MS;'>SMIT Mini-Hackathon (HTML & CSS)</h1></a>
+	</div>
+	<br>
+
+<div class="container">
+        <h2>Assignments</h2>
+        <ul class="assignment-list">
+            <li><a href=".\Chapters\index.html">Assignment 10 - Chapters 01-09</a></li>
+            <!--li><a href="Assignment 3 (upd8 to 5)/Online Store/index.html">Assignment 3&5 - Template Follow</a></li>
+            <li><a href="Assignment 4/index.html">Assignment 4 - Tables</a></li>
+            <li><a href="Assignment 6/index.html">Assignment 6 - Linking</a></li>
+            <li><a href="Assignment 7/index.html">Assignment 7 - Facebook (Cloning)</a></li>
+            <li><a href="Assignment 8/index.html">Assignment 8 - Salt'n Pepper (Cloning)</a></li>
+            <li><a href="Assignment 9/index.html">Assignment 9 - Fiverr (Cloning)</a></li-->
+        </ul>
+
+        <h2>Class Activity</h2>
+        <ul class="assignment-list">
+            <li><a href="Classwork 1/index.html">Classwork 1 (9/13) - for loop (Self Study)</a></li>
+            <li><a href="Classwork 2/index.html">Classwork 2 (9/15) - Personal Default Templates</a></li>
+			<li><a href="Classwork 3/index.html">Classwork 3 (9/20) - If Else</a></li>
+        </ul>
+        
+        <h2>Extra</h2>
+        <ul class="assignment-list">
+            <li><a href="Test/index.html">Testing Miscellaneous</a></li>
+        </ul>
+        
     </div>
 </body>
 </html>
-
-<style>
-body {
-    font-family: TIMES NEW ROMAN, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px 50px 0px 50px;
-}
-
-.header {
-    font-family: Arial, sans-serif;
-    color: #333;
-    min-width: 800px;
-    margin: fit-content;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center header text */
-}
-
-.container {
-    display: flex; /* Arrange cards horizontally */
-    justify-content: space-between; /* Space between cards */
-    width: 100%; /* Full width of the page */
-    padding: 0 20px; /* Padding for better spacing */
-    margin: 20px 0; /* Space above and below the cards */
-}
-
-
-.card {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; /* Center content horizontally */
-    background-color: white;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease, box-shadow 0.3s ease;
-    text-decoration: none; /* Remove underline */
-    color: black; /* Text color */
-    flex: 1; /* Allow cards to grow equally */
-    margin: 0 10px; /* Space between cards */
-    padding: 30px;
-    height: 600px;
-    /*height: 630px;*/
-}
-
-.cont_slim_ovr {
-    height: 3vh;
-    padding: 20px;
-}
-
-.card img {
-    margin-bottom: 20px; /* Space between logo and text */
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.logo {
-    width: 100px; /* Adjust logo size */
-    height: auto;
-}
-
-h2 {
-    font-size: 24px;
-    margin: 10px 0;
-}
-
-p {
-    font-size: 16px;
-    color: #555;
-}
-
-@media (max-width: 856px) {
-    .header {
-        margin: auto;
-        width: auto;
-        min-width: 90%;
-    }
-    
-    .container {
-        flex-direction: column; /* Stack cards vertically on smaller screens */
-        align-items: center; /* Center align cards */
-    }
-
-    .card {
-        margin: 10px 0; /* Space between stacked cards */
-        width: 90%; /* Adjust width for smaller screens */
-        height: auto; /* Allow height to adjust */
-    }
-}
-
-    </style>
