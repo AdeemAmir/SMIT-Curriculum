@@ -1,0 +1,150 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 09-11 | Learning JavaScript (271965)</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #eaeaea; /* set gray, change to black on trigger*/
+            color: #0f0;
+            font-family: 'Comic Sans MS', cursive;
+            height: fit-content;
+            width: 100%;
+            white-space: pre-wrap; /* Allows wrapping */
+            word-wrap: break-word; /* forgot what i was using it for lol. its important, don't remove */
+        }
+
+        .output.active {
+            background-color: black;
+        }
+        
+        .watermark {position: fixed; bottom: 10px; right: 28px; font-size: 14px; color: rgba(141, 141, 141, 0.5); pointer-events: none;}
+        
+    </style>
+</head>
+
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+
+    <h1>CHAPTER 09-11: USER INPUT & CONDITIONAL STATMENT | JAVASCRIPT</h1>
+    <div class="container">
+        <div class="question">
+            <h2>1. Welcome User Based on City</h2>
+            <button onclick="welcomeCity()">Check City</button>
+            <div class="output" id="cOutp1"></div>
+        </div>
+
+        <div class="question">
+            <h2>2. Greet User Based on Gender</h2>
+            <button onclick="greetGender()">Check Gender</button>
+            <div class="output" id="cOutp2"></div>
+        </div>
+
+        <div class="question">
+            <h2>3. Traffic Signal Messages</h2>
+            <button onclick="trafficSignal()">Check Traffic Signal</button>
+            <div class="output" id="cOutp3"></div>
+        </div>
+
+        <div class="question">
+            <h2>4. Fuel Level Check</h2>
+            <button onclick="fuelCheck()">Check Fuel</button>
+            <div class="output" id="cOutp4"></div>
+        </div>
+
+        <div class="question">
+            <h2>5. Check Alert Conditions</h2>
+            <button onclick="alertConditions()">Check Alerts</button>
+            <div class="output" id="cOutp5"></div>
+        </div>
+
+        <div class="question">
+            <h2>6. Calculate Percentage and Grade</h2>
+            <button onclick="calculatePercentage()">Calculate Percentage</button>
+            <div class="output" id="cOutp6"></div>
+        </div>
+
+        <div class="question">
+            <h2>7. Guessing Game</h2>
+            <button onclick="guessGame()">Guess Game</button>
+            <div class="output" id="cOutp7"></div>
+        </div>
+
+        <div class="question">
+            <h2>8. Check Divisibility by 3</h2>
+            <button onclick="checkDivisibility()">Check Divisibility by 3</button>
+            <div class="output" id="cOutp8"></div>
+        </div>
+
+        <div class="question">
+            <h2>9. Check Even or Odd</h2>
+            <button onclick="checkEvenOdd()">Check Even or Odd</button>
+            <div class="output" id="cOutp9"></div>
+        </div>
+
+        <div class="question">
+            <h2>10. Weather Report Based on Temperature</h2>
+            <button onclick="weatherReport()">Check Weather</button>
+            <div class="output" id="cOutp10"></div>
+        </div>
+
+        <div class="question">
+            <h2>11. Simple Calculator</h2>
+            <button onclick="calculator()">Simple Calculator</button>
+            <div class="output" id="cOutp11"></div>
+            <p style ='font-weight:bold; font-size: 10px; font-family:Arial; color:black;'>*This is 'switch case' Calculator. I already created if else Calculator in 'Classwork 3'</p>
+        </div>
+    </div>
+    
+    <script src="./script.mjs"></script>
+</body>
+</html>
