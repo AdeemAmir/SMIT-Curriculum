@@ -1,0 +1,181 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 14-16 | Learning JavaScript (271965)</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #eaeaea;
+            color: #0f0;
+            font-family: 'Comic Sans MS', cursive;
+            height: fit-content;
+            width: 100%;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output.active {
+            background-color: black;
+        }
+
+        .watermark {
+            position: fixed;
+            bottom: 10px;
+            right: 28px;
+            font-size: 14px;
+            color: rgba(141, 141, 141, 0.5);
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+
+    <h1>CHAPTER 12-13: ARRAYS | JAVASCRIPT</h1>
+    <div class="container">
+
+        <div class="question">
+            <h2>Q1. Declare an Empty Array for Student Names</h2>
+            <button onclick="declareEmptyStudentArray()">Declare</button>
+            <div class="output" id="output1"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q2. Declare an Empty Array Using Object Notation</h2>
+            <button onclick="declareEmptyObjectArray()">Declare</button>
+            <div class="output" id="output2"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q3. Declare and Initialize a Strings Array</h2>
+            <button onclick="initializeStringsArray()">Initialize</button>
+            <div class="output" id="output3"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q4. Declare and Initialize a Numbers Array</h2>
+            <button onclick="initializeNumbersArray()">Initialize</button>
+            <div class="output" id="output4"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q5. Declare and Initialize a Boolean Array</h2>
+            <button onclick="initializeBooleanArray()">Initialize</button>
+            <div class="output" id="output5"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q6. Declare and Initialize a Mixed Array</h2>
+            <button onclick="initializeMixedArray()">Initialize</button>
+            <div class="output" id="output6"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q7. Education Qualifications in Pakistan</h2>
+            <button onclick="showQualifications()">Show Qualifications</button>
+            <div class="output" id="output7"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q8. Store Student Names and Scores</h2>
+            <button onclick="storeStudentScores()">Store Scores</button>
+            <div class="output" id="output8"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q9. Color Names Array Manipulation</h2>
+            <button onclick="colorNamesManipulation()">Manipulate Colors</button>
+            <div class="output" id="output9"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q10. Sort Student Scores</h2>
+            <button onclick="sortStudentScores()">Sort Scores</button>
+            <div class="output" id="output10"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q11. Copy City Names</h2>
+            <button onclick="copyCityNames()">Copy Cities</button>
+            <div class="output" id="output11"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q12. Create String from Array</h2>
+            <button onclick="createStringFromArray()">Create String</button>
+            <div class="output" id="output12"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q13. FIFO Array</h2>
+            <button onclick="fifoArray()">FIFO Array</button>
+            <div class="output" id="output13"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q14. LIFO Array</h2>
+            <button onclick="lifoArray()">LIFO Array</button>
+            <div class="output" id="output14"></div>
+        </div>
+
+        <div class="question">
+            <h2>Q15. Phone Manufacturers Dropdown</h2>
+            <button onclick="showPhoneManufacturers()">Show Dropdown</button>
+            <div class="output" id="output15"></div>
+        </div>
+
+    </div>
+    <script src=".\script.mjs"></script>
+</body>
+
+</html>
