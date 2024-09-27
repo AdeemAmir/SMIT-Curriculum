@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+            body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #eaeaea; /* set gray, change to black on trigger*/
+            color: #0f0;
+            font-family: 'Comic Sans MS', cursive;
+            height: fit-content;
+            width: 100%;
+            white-space: pre-wrap; /* Allows wrapping */
+            word-wrap: break-word; /* forgot what i was using it for lol. its important, don't remove */
+        }
+
+        .output.active {
+            background-color: black;
+        }
+        
+        .watermark {position: fixed; bottom: 10px; right: 28px; font-size: 14px; color: rgba(141, 141, 141, 0.5); pointer-events: none;}
+        
+</style>
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+    <div class="container">
+    <div class="question">
+        <h2>1. Cizitenship Check</h2>
+        <button onclick="inputval()">Values</button>
+        <div class='output' id="cOutp1"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="question">
+        <h2>2. Time Check</h2>
+        <button onclick="checkTime()">Values</button>
+        <div class='output' id="cOutp2"></div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+//     function dispM(a, b) {
+//     document.getElementById(a).innerText = b;
+//     document.getElementById(a).classList.add('active');
+// }
+
+//     var x;
+//     var y;
+//     function inputval() {
+//         x=prompt("x")
+//         y=prompt("y")
+
+//         if(x>=300 && y<=15){
+//     dispM('cOutp1','True');
+// }
+// else{
+//     dispM('cOutp1','False');
+// }
+//     }
+
+function dispM(a, b) {
+    document.getElementById(a).innerText = b;
+    document.getElementById(a).classList.add('active');
+}
+
+    var x;
+    var y;
+    var cit;
+    function inputval() {
+        y=prompt("Enter Your Name: ")
+		x=prompt("Enter Your Age: ")
+        cit=prompt("Enter Cizitenship")
+
+        if((x<21||x>61) && cit=="U.S."){
+    dispM('cOutp1',`Hello ${y}. Your age is ${x}. \nCitizenship: ${cit}\nYou are eligible.`);
+}
+else{
+    dispM('cOutp1',`Hello ${y}. Your age is ${x}. \nCitizenship: ${cit}\nYou are ineligible.`);
+}
+    }
+
+
+//     const tm = prompt("Enter time in 24-hour format (e.g., 1900 for 7 PM):\nOr as follow ({Hour}AM/PM)");
+//     if (tm.length>3) {
+//     var hr = parseInt(tm.slice(0, 2));
+// }else{
+//     if
+// }
+
+function checkTime() {
+    const tm = prompt("Enter time in 24-hour format (e.g., 1900 for 7 PM) or as follows ({Hour}AM/PM):");
+    let hr;
+    console.log("hr is " +hr);
+
+if (tm.length === 4 && (tm.endsWith("AM") || tm.endsWith("PM"))) {
+        hr = parseInt(tm.slice(0, 2));
+        
+
+        if (tm.endsWith("PM") && hr < 12) {
+            hr += 12;
+        } else if (tm.endsWith("AM") && hr === 12) {
+            hr = 0;
+        }
+    } else if (tm.length >= 3) {
+        hr = parseInt(tm.slice(0, 2));
+    } else {
+        dispM("cOutp2", "Invalid time input. Please enter a valid hour.");
+        return;
+    }
+
+
+    if (hr < 0 || hr > 23) {
+        dispM("cOutp2", "Invalid time input. Please enter a valid hour (0-23).");
+    } else if (hr < 5 || hr >= 18 || hr=="") {
+        dispM("cOutp2", "Good Evening");
+    } else if (hr < 12) {
+        dispM("cOutp2", "Good Morning");
+    } else if (hr < 18) {
+        dispM("cOutp2", "Good Afternoon");
+    }else {
+        dispM("cOutp2", "Invalid Input.");
+    }
+
+}
+    </script>
