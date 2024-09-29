@@ -1,0 +1,100 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMIT 9/29/24 | Learning JavaScript (271965)</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #eaeaea; /* set gray, change to black on trigger*/
+            color: #0f0;
+            font-family: 'Comic Sans MS', cursive;
+            height: fit-content;
+            width: 100%;
+            white-space: pre-wrap; /* Allows wrapping */
+            word-wrap: break-word; /* forgot what i was using it for lol. its important, don't remove */
+        }
+
+        .output.active {
+            background-color: black;
+        }
+        
+        .watermark {position: fixed; bottom: 10px; right: 28px; font-size: 14px; color: rgba(141, 141, 141, 0.5); pointer-events: none;}
+        
+    </style>
+</head>
+
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+
+    <h1>ARRAY PUSH,POP,SPLICE | JAVASCRIPT</h1>
+    <h2 style="font-size: 12px;">Done during class (20 mins.). <br>Better version in Assignment "Chapters: 14-16"</h2>
+    <div class="container">
+        <div class="question">
+            <h2>Array Manager</h2>
+            <div class="output" id="cOutp1" style="overflow-y: scroll; max-height: 200px; min-height:200px;background-color: black;">Enter Values in the Array, one by one.</div>
+            <input type="text" id="arrdata" placeholder="COLOR NAME" style="width: 60%; margin-left: 5px;">
+            <input type="number" id="indx" placeholder="INDEX" style="width: 20%; margin-left: 5px; margin-right: 5px;">
+            <input type="number" id="count" placeholder="COUNT" style="width: 20%; margin-right: 5px;">
+            <br>
+            <button onclick="adder()">Add to Index</button> <br>
+            <button onclick="clsArr()">Clear</button> <br>
+            <button onclick="deleter()">Remove from Index</button> <br>
+            <button onclick="clrScr()">Clear Screen</button> <br>
+
+        </div>
+    </div>
+
+    
+    
+<script src=".\script.mjs"></script>
+</body>
+</html>

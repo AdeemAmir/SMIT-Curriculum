@@ -1,0 +1,175 @@
+1. Declare and initialize an empty multidimensional array.
+(Array of arrays)
+2. Declare and initialize a multidimensional array 
+representing the following matrix:
+3. Write a program to print numeric counting from 1 to 10.
+
+4. Write a program to print multiplication table of any 
+number using for loop. Table number & length should be 
+taken as an input from user.
+
+5. Write a program to print items of the following array 
+using for loop:
+fruits = [“apple”, “banana”, “mango”, “orange”, 
+“strawberry”]
+6. Generate the following series in your browser. See 
+example output.
+a. Counting: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+b. Reverse counting: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+c. Even: 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+d. Odd: 1, 3, 5, 7, 9, 11, 13, 15, 17, 19
+e. Series: 2k, 4k, 6k, 8k, 10k, 12k, 14k, 16k, 18k, 20k
+
+7. You have an array
+A = [“cake”, “apple pie”, “cookie”, “chips”, “patties”]
+Write a program to enable “search by user input” in an 
+array.
+After searching, prompt the user whether the given item is
+found in the list or not. Example:
+
+8. Write a program to identify the largest number in the 
+given array.
+A = [24, 53, 78, 91, 12].
+
+9. Write a program to identify the smallest number in the 
+given array.
+A = [24, 53, 78, 91, 12]
+10. Write a program to print multiples of 5 ranging 1 to 
+100
+
+Solve the above using this format
+
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 17-20 | Learning JavaScript (271965)</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #eaeaea; /* set gray, change to black on trigger*/
+            color: #0f0;
+            font-family: 'Comic Sans MS', cursive;
+            height: fit-content;
+            width: 100%;
+            white-space: pre-wrap; /* Allows wrapping */
+            word-wrap: break-word; /* forgot what i was using it for lol. its important, don't remove */
+        }
+
+        .output.active {
+            background-color: black;
+        }
+        
+        .watermark {position: fixed; bottom: 10px; right: 28px; font-size: 14px; color: rgba(141, 141, 141, 0.5); pointer-events: none;}
+        
+    </style>
+</head>
+
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+
+    <h1>CHAPTER 17-20: ARRAYS AND LOOPS | JAVASCRIPT</h1>
+    <div class="container">
+        <div class="question">
+            <h2>Q1. Check Character Type</h2>
+            <button onclick="checkCharacterType()">Check Character</button>
+            <div class="output" id="cOutp1"></div>
+        </div>
+    </div>
+
+    <div class="question">
+        <h2>Q2. Display Larger Integer</h2>
+        <button onclick="compareIntegers()">Compare Integers</button>
+        <div class="output" id="cOutp2"></div>
+    </div>
+    
+    
+<script src=".\script.mjs"></script>
+</body>
+</html>
+
+/*************************************************
+Code by Adeem Amir
+*************************************************/
+function dispM(a, b) {
+    document.getElementById(a).innerText = b;
+    document.getElementById(a).classList.add('active');
+}
+
+// Q1. Check Character Type
+function checkCharacterType() {
+    const char = prompt("Enter a character (number or string):");
+    const ascii = char.charCodeAt(0);
+
+    if (ascii >= 65 && ascii <= 90) {
+        dispM("cOutp1", `${char} is an uppercase letter.`);
+    } else if (ascii >= 97 && ascii <= 122) {
+        dispM("cOutp1", `${char} is a lowercase letter.`);
+    } else if (ascii >= 48 && ascii <= 57) {
+        dispM("cOutp1", `${char} is a number.`);
+    } else {
+        dispM("cOutp1", `${char} is not a number or a letter.`);
+    }
+}
+
+// Q2. Display Larger Integer
+function compareIntegers() {
+    const num1 = parseInt(prompt("Enter the first integer:"));
+    const num2 = parseInt(prompt("Enter the second integer:"));
+
+    if (num1 > num2) {
+        dispM("cOutp2", `${num1} is larger.`);
+    } else if (num2 > num1) {
+        dispM("cOutp2", `${num2} is larger.`);
+    } else {
+        dispM("cOutp2", "Both integers are equal.");
+    }
+}
