@@ -51,10 +51,10 @@ else{
 
 /****************************************************/
 
-function gotoback() {
+function gotoBack() {
     window.history.back();
 }
 
-function gotoome() {
-    window.location.href = 'index.html'
+function gotoHome() {
+    window.location.href = 'https://adeemamir.github.io/SMIT-Curriculum'
 }

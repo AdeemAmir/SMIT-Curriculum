@@ -1,0 +1,80 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Runner | Learning JavaScript</title>
+</head>
+<link rel="stylesheet" href="../style.css">
+<body>
+
+<div class="watermark">Code by Adeem Amir</div>
+
+<div class="container">
+    <div class="question">
+<h2>1. Array Runner
+<span style="font-size: 12px; color: #555;" title="This section allows you to manipulate an array of colors. You can add, remove, or clear colors from the array using the available buttons. The current state of the array is displayed, allowing you to track your changes in real time.">
+[usage]</span>
+</h2>
+        <div id="colorManipulationContainer" style="margin-top: 10px;">
+            <div id="colorArrayContainer" style="max-height: 200px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                <div class="output output_ovr" id="t1Output" style="width: 90%;">Initial Array: []</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <input type="text" id="colorInput" placeholder="ENTER VALUE TO ADD TO ARRAY" style="width: 60%; margin-left: 5px;">
+                <input type="number" id="indexInput" placeholder="INDEX" style="width: 20%; margin-left: 5px; margin-right: 5px;">
+                <input type="number" id="countInput" placeholder="COUNT" style="width: 20%; margin-right: 5px;">
+            </div>
+
+            <div style="margin-top: 10px; display: flex; justify-content: space-between;">
+                <div>
+                    <button onclick="addColorToStart()" class="q9mod">Add to Start</button> <br>
+                    <button onclick="addColorAtIndex()" class="q9mod">Add to Index</button> <br>
+                    <button onclick="addColorToEnd()" class="q9mod">Add to End</button> <br>
+                </div>
+
+                <div style="margin-top: 40px;">
+                    <button onclick="fullCap()" class="q9mod">CAP ALL</button>
+                    <button onclick="clearColors()" class="q9mod">Clear</button>
+	  <button onclick="fullLower()" class="q9mod">lower all</button>
+                </div>
+
+                <div>
+                    <button onclick="deleteFirstColor()" class="q9mod">Remove from Start</button> <br>
+                    <button onclick="deleteColorsAtIndex()" class="q9mod">Remove from Index</button> <br>
+                    <button onclick="deleteLastColor()" class="q9mod">Remove from End</button> <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <div class="question">
+<h2>2. CAP uncap
+<span style="font-size: 12px; color: #555;" title="In this task, you can capitalize or uncapitalize the letters of a word or sentence. You can either enter your own text or use the 'Array Grabber' to transform the array from Task 1. You can also Full Cap or full uncap.">
+[usage]</span>
+</h2>
+        <input type="text" id="wordInput" class="defInp" style='width: 90%;' placeholder="Enter words or an array of words">
+        <br><br>
+        <button onclick="capUncap()">Cap/Uncap</button>
+        
+        <button onclick="capAll()">Cap All</button>
+        <button onclick="uncapAll()">Uncap All</button>
+        <button onclick="arrayGrabber()" class="q9mod">Array Grabber</button>
+        <button onclick="arrayToInput()">Array to Input</button>
+        <div class="output output_ovr" id="cOutp1"></div>
+    </div>
+</div>
+
+<div class="backbutt_loc">
+        <button class='backbutt_mod' onclick="gotoBack()">Back</button>
+        <button class='backbutt_mod' onclick="gotoHome()">Home</button>
+</div>
+
+    <script src="./script.mjs"></script>
+</body>
+</html>
