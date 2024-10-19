@@ -41,6 +41,53 @@
             background-color: #2980b9;
         }
 
+        .sp_body {
+            font-family: 'Times New Roman', serif;
+            background-color: #e7f3ff;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .sp_h1 {
+            color: #007bff;
+            font-size: 40px;
+        }
+
+        .sp_inp {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .sp_select {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .sp_button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        sp_button:hover {
+            background-color: #0056b3;
+        }
+        
+        .sp_cOutp1 {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+
         .defInp {
             width: 50%;
             padding: 5px 15px;
