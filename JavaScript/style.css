@@ -1,3 +1,4 @@
+/*STYLE BY ADEEM AMIR*/
         body {
             font-family: 'Times New Roman', serif;
             background-color: #f4f4f4;
@@ -74,6 +75,12 @@
             white-space: pre-wrap; 
             word-wrap: break-word; 
         }
+        
+        .output-scroll {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
         
         .output_ovr {
             background-color: black; 
