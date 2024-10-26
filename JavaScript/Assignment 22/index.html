@@ -1,0 +1,128 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A lot of Study and Research</title>
+</head>
+<link rel="stylesheet" href="../style.css">
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+    <div class="question"><h1>Chapter 21-30: Self Study Assignment</h1></div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 21. Flip Case</h2>
+            <!-- <div class="output" style = "background-color: #333;"id="cOutp2"></div> -->
+            <input class='sp_inp long-input'type="text" id="stringInp" placeholder="Enter String to Flip" />
+            <button onclick="flipcase21()">Flip Case</button>
+            <div class="output" id="cOutp21"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 22. Length and Extract Function</h2>
+            <input class='sp_inp long-input' type="text" id="inputString" placeholder="Enter String" />
+            <input class='sp_inp short-input' type="number" id="fromIndex" placeholder="From" />
+            <input class='sp_inp short-input' type="number" id="toIndex" placeholder="To" />
+            <button onclick="lengthAndExtract()">Check</button>
+            <div class="output" id="cOutp22"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 23. Segment Finder and Replace (Non-Global)</h2>
+            <input class='sp_inp long-input' type="text" id="replaceStringFirst" placeholder="Enter String" />
+            <input class='sp_inp segment-input' type="text" id="segmentToFindFirst" placeholder="Segment to Find" />
+            <input class='sp_inp segment-input' type="text" id="segmentToReplaceFirst" placeholder="Replace With" />
+            <button onclick="segmentFinderAndReplaceFirst()">Check</button>
+            <div class="output" id="cOutp23"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 24. Finding a Character at Location</h2>
+            <input class='sp_inp long-input' type="text" id="charInputString" placeholder="Enter String" />
+            <input class='sp_inp segment-input' type="text" id="charToFind" placeholder="Character to Find" />
+            <button onclick="findCharacter()">Check</button>
+            <div class="output" id="cOutp24"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 25. Segment Finder and Replace Function</h2>
+            <input class='sp_inp long-input' type="text" id="replaceString" placeholder="Enter String" />
+            <input class='sp_inp sp_inp40' type="text" id="segmentToFind" placeholder="Segment to Find" />
+            <input class='sp_inp sp_inp40' type="text" id="segmentToReplace" placeholder="Replace With" />
+            <button onclick="segmentFinderAndReplace()">Check</button>
+            <div class="output" id="cOutp25"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 26. Rounding Numbers</h2>
+            <input class='sp_inp' type="text" id="numberToRound" placeholder="Enter Number" />
+            <select class='sp_select' id="roundMethod">
+                <option value="round">Round</option>
+                <option value="floor">Floor</option>
+                <option value="ceil">Ceil</option>
+            </select>
+            <button onclick="roundNumber()">Round</button>
+            <div class="output" id="cOutp26"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 27. Random Number Generator and Guesser Game</h2>
+            <button onclick="generateRandomNumber()">Generate Random Number</button><br>
+            <input class='sp_inp' type="number" id="userGuess" placeholder="Your Guess" />
+            <button onclick="guessNumber()">Guess</button>
+            <div class="output" id="cOutp27"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 28. Converting Word Number to Int (up to 100)</h2>
+            <input class='sp_inp sp_inp40' type="text" id="wordNumber" placeholder="Enter Word Number" />
+            <button onclick="wordToNumber()">Convert</button>
+            <div class="output" id="cOutp28"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 29. Convert Given String to Number, Perform Operation, Convert Back</h2>
+            <input class='sp_inp long-input' type="text" id="stringToConvert" placeholder="Enter String" />
+            <input class='sp_inp short-input' type="number" id="multiplierInput" placeholder="Multiplier" />
+            <button onclick="stringToNumberAndBack()">Convert</button>
+            <div class="output" id="cOutp29"></div>
+        </div>
+</div>
+
+<div class="container container_ovr">
+        <div class="question">
+            <h2>Chapter 30. Add User Input Tax Amount</h2>
+            <input class='sp_inp' type="number" id="baseValue" placeholder="Enter Base Value" />
+            <input class='sp_inp' type="number" id="taxPercentage" placeholder="Enter Tax % " />
+            <input class='sp_inp' type="number" id="decimalPlaces" placeholder="Decimal Places" />
+            <button onclick="addTax()">Calculate</button>
+            <div class="output" id="cOutp30"></div>
+        </div>
+</div>
+
+    <div class="backbutt_loc">
+        <button class='sp_button' onclick="gotoBack()">Back</button>
+        <button class='sp_button' onclick="gotoHome()">Home</button>
+        
+    </div>
+    <script src="./script.mjs"></script>
+</body>
+</html>

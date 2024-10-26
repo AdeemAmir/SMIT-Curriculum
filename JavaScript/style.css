@@ -20,11 +20,21 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+        
+        .container_ovr {
+	max-width: none;
+	margin-bottom: 20px;        
+        }        
 
         .question {
             margin-bottom: 20px;
             border-bottom: 1px solid #ccc;
             padding-bottom: 10px;
+        }
+        
+        .question_gap {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
         }
 
         button {
@@ -61,6 +71,10 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        
+        .sp_inp40 {
+            width: 40%;
+        }
 
         .sp_select {
             padding: 10px;
@@ -78,7 +92,7 @@
             cursor: pointer;
         }
 
-        sp_button:hover {
+        .sp_button:hover {
             background-color: #0056b3;
         }
         
@@ -108,6 +122,20 @@
             color: #aaa;
             opacity: 1;
         }
+        
+        .short-input {
+            width: 80px;
+            padding: 5px;
+        }
+
+        .long-input {
+            width: calc(100% - 45px);
+        }
+
+        .segment-input {
+            width: 200px; /*Might not be needed*/
+            padding: 10px;
+        }
 
         .output {
             margin-top: 10px;
@@ -118,7 +146,7 @@
             color: #0f0;
             font-family: 'Comic Sans MS', cursive;
             height: fit-content;
-            width: 100%;
+            width: 97%;
             white-space: pre-wrap; 
             word-wrap: break-word; 
         }
