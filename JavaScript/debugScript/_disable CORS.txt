@@ -1,0 +1,18 @@
+1. Disable CORS
+cd C:\Program Files\Google\Chrome\Application
+chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+
+
+2. Or Use Python Server in Dir
+python -m http.server
+
+
+3. Or Run via VS Code Liver Server
+
+
+4. Using Node.js (with http-server package):
+
+(global)
+npm install -g http-server
+(project dir)
+http-server

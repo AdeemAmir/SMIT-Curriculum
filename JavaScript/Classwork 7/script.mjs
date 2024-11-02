@@ -8,6 +8,32 @@ function dispMx(a, b) {
     document.getElementById(a).classList.add('active');
 }
 
+function Concept() {
+    const dt = new Date();
+    const nl = dt.toString();
+    const tday = dt.getDay();
+    const daysNm = ["Sun","Mon","Tue","Wed","Thur","Fri","Sat"];
+    const tdayNm = daysNm[tday];
+
+    const dday = new Date("THIS THE END");
+    const dday2 = new Date(2);
+    const dday3 = new Date("July 21, 1982 12:55:44");
+    
+    
+    console.log("Object Date: "+dt+"\n"+typeof(dt));
+    console.log("String Date: "+nl+"\n"+typeof(nl));
+    console.log("getDay: "+tday+"\n"+typeof(tday));
+    console.log("getDay Named: "+tdayNm+"\n"+typeof(tdayNm));
+    console.log("DDay 1: "+dday+"\n"+typeof(dday));
+    console.log("DDay 2: "+dday2+"\n"+typeof(dday2));
+    console.log("DDay 3: "+dday3+"\n"+typeof(dday3));
+    //getDay;Month;Date;FullYear;Hours;Minutes;Seconds;Miliseconds;Time;();
+    //setFullyear;Month;Date;Hours;Minutes;Seconds;Miliseconds;();
+    }
+    
+
+
+/*
 function getRandomDecimal() {
     //return Math.random() * (8 - 6) + 6;
     const x=Math.random() * (8 - 6) + 6;
@@ -22,13 +48,6 @@ function getRandomNumberFloored() {
     console.log(x);
 }
 
-function Concept() {
-var String = "100"; // String
-var z = -"100";     // Number
-var x = +"100";     // Number
-var v = "100" + "200"; // + doesn't work but others, /*- works.
-console.log(`x: ${typeof(x)}`);
-}
 
 function AgeInt() {
     //parseInt is used to force val to int.
@@ -92,6 +111,7 @@ function funw5() {
 //x.tofixed(); math.floor(x)
 //x.tofixed(0)
 }
+*/
 
 function gotoBack() {
     window.history.back();

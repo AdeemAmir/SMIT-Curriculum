@@ -1,3 +1,6 @@
+/*************************************************
+Code by Adeem Amir
+*************************************************/
 function dispM(a, b) {
     document.getElementById(a).innerHTML = b;
     document.getElementById(a).classList.add('active');
@@ -183,3 +186,11 @@ function segmentFinderAndReplace() {
 
             dispM("cOutp30", `Base Value: ${baseValue}\nTax Percentage: ${taxPercentage}%\nTotal Value (fixed to ${decimalPlaces} decimals): ${formattedValue}`);
         }
+
+function gotoBack() {
+    window.history.back();
+}
+
+function gotoHome() {
+    window.location.href = 'https://adeemamir.github.io/SMIT-Curriculum'
+}

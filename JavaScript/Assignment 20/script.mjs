@@ -48,3 +48,11 @@ Code by Adeem Amir
             const isPalin = isPalindrome(x);
             resultDiv.textContent = isPalin ? `"${x}" is a palindrome.` : `"${x}" is not a palindrome.`;
         };
+
+function gotoBack() {
+    window.history.back();
+}
+
+function gotoHome() {
+    window.location.href = 'https://adeemamir.github.io/SMIT-Curriculum'
+}

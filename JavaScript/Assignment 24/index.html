@@ -1,0 +1,38 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+</head>
+<link rel="stylesheet" href="../style.css">
+<body>
+    <div class="watermark">Code by Adeem Amir</div>
+    <div class="question"><h1>Random Password Generator</h1></div>
+
+<div class="container container_ovr">
+    <div class="question">
+        <h2>Password Generator</h2>
+        <input class='sp_inp long-input' type="text" id="inputToPasswordify" placeholder="Passwordify" />
+        <input class='sp_inp short-input' type="number" id="passwordLength" placeholder="Length" value="8" />
+        <label><input type="checkbox" id="includeLower" checked> Include Lowercase</label>
+        <label><input type="checkbox" id="includeUpper" checked> Include Uppercase</label>
+        <label><input type="checkbox" id="includeNumbers" checked> Include Numbers</label>
+        <label><input type="checkbox" id="includeSymbols" checked> Include Symbols</label>
+        <br>
+        <button onclick="passwordifyInput()">Passwordify Input</button>
+        <button onclick="generatePassword()">Generate Password</button>
+        <div class="output" id="passwordOutput"></div>
+    </div>
+
+</div>
+
+    <div class="backbutt_loc">
+        <button class='sp_button' onclick="gotoBack()">Back</button>
+        <button class='sp_button' onclick="gotoHome()">Home</button>
+        
+    </div>
+    <script src="./script.mjs"></script>
+</body>
+</html>
