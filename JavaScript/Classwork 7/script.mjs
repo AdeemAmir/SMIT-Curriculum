@@ -1,3 +1,6 @@
+/*************************************************
+Code by Adeem Amir
+*************************************************/
 function dispM(a, b) {
     document.getElementById(a).innerHTML = b;
     document.getElementById(a).classList.add('active');
