@@ -1,0 +1,53 @@
+<!-- CODE BY ADEEM AMIR -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks Management</title>
+<link rel="stylesheet" href="./style.css">
+    
+</head>
+<body>
+
+<h1>Student Marks Management</h1>
+
+<form id="studentForm">
+    <label for="studentNumber">Enter Student Number (16050 or 271965):</label>
+    <input type="text" id="studentNumber" required>
+    <button type="submit">Submit</button>
+</form>
+
+<form id="infoForm" style="display:none;">
+    <label for="infoType">Select Information Type:</label>
+    <select id="infoType">
+        <option value="all">All Information</option>
+        <option value="subject1">Subject 1 Mark</option>
+        <option value="subject2">Subject 2 Mark</option>
+        <option value="subject3">Subject 3 Mark</option>
+        <option value="total">Total Marks</option>
+        <option value="percentage">Percentage</option>
+        <option value="cgpa">CGPA</option>
+    </select>
+    <button type="submit" id="getInfoBySelect">Get Info by Select</button>
+    
+    <label for="indexInput">Or Enter Array Index (0-6):</label>
+    <input type="number" id="indexInput" placeholder="Array Index (0-6)" min="0" max="6">
+    <button type="submit" id="getInfoByIndex">Get Info by Index</button>
+</form>
+
+<div id="output"></div>
+
+<button id="adminButton">Admin Login</button>
+<div class="subject-buttons" id="subjectButtons">
+    <button id="addStudentButton">Add Student</button>
+    <button id="editStudentNameButton">Edit Student Name</button>
+    <button id="subject1Button">Edit Subject 1</button>
+    <button id="subject2Button">Edit Subject 2</button>
+    <button id="subject3Button">Edit Subject 3</button>
+</div>
+
+<div class="watermark">Code by Adeem Amir</div>
+<script src=".\script.mjs"></script>
+</body>
+</html>

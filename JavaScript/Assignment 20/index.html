@@ -1,34 +1,39 @@
-<!-- CODE BY ADEEM AMIR -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palindrome | Learning JavaScript</title>
-    <link rel="stylesheet" href="../style.css">
-    <style>
-    .initClr {
-    background-color: #91d2fd;
-    }
-    </style>
+    <title>Airline Reservation &amp; Price Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
-<body class='sp_body'>
-    <div class="watermark">Code by Adeem Amir</div>
+<body>
+    <h1>Airline Reservation &amp; Price Tracker</h1>
 
-    <div class="question">
-        <h1 class='sp_h1'>Palindrome Tester</h2>
-        <input type="text" id="palinInp" class="defInp" placeholder="Enter to Test for Palindrome.">
-        <br><br>
-        <button onclick="checkPalindrome()">Enter via Input</button>
-        <button onclick="userPrompt()">Enter via Prompt</button>
-        <button onclick="howToCons()">Enter via Console</button>
-        <div class="output initClr" id="cOutp1"></div>
+    <label for="origin">Origin:</label>
+    <input type="text" id="origin" placeholder="Enter origin airport (e.g., ASD)"><br><br>
 
-<div class="backbutt_loc">
-        <button class='sp_button' onclick="gotoBack()">Back</button>
-        <button class='sp_button' onclick="gotoHome()">Home</button>
-</div>
-    </div>
-    <script src="./script.mjs"></script>
+    <label for="destination">Destination:</label>
+    <input type="text" id="destination" placeholder="Enter destination airport (e.g., AD)"><br><br>
+
+    <label for="departure-date">Departure Date:</label>
+    <input type="date" id="departure-date"><br><br>
+
+    <button id="search-flights">Search Flights</button><br><br>
+
+    <h3>Set Price Alert</h3>
+    <input type="number" id="alert-price" placeholder="Enter price threshold">
+    <button id="set-alert">Set Price Alert</button>
+
+    <h3>Price Alerts:</h3>
+    <ul id="alert-list"></ul>
+
+    <h3>Booking</h3>
+    <button id="book-flight" disabled>Book Flight</button>
+
+        <h2>Available Flights:</h2>
+        <ul id="flights"></ul>
+
+    <script src="script.js"></script>
 </body>
 </html>

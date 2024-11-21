@@ -1,28 +1,37 @@
+<!-- CODE BY ADEEM AMIR -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title>SMIT 9/29/24 | Learning JavaScript (271965)</title>
 <link rel="stylesheet" href="../style.css">
+</head>
+
 <body>
     <div class="watermark">Code by Adeem Amir</div>
-    <div class="container">
-    <div class="question">
-        <h2>1. Cizitenship Check</h2>
-        <button onclick="inputval()">Values</button>
-        <div class='output' id="cOutp1"></div>
-    </div>
-</div>
 
-<div class="container">
-    <div class="question">
-        <h2>2. Time Check</h2>
-        <button onclick="checkTime()">Values</button>
-        <div class='output' id="cOutp2"></div>
+    <h1>ARRAY PUSH,POP,SPLICE | JAVASCRIPT</h1>
+    <h2 style="font-size: 12px;">Done during class (20 mins.). <br>Better version in Assignment "Chapters: 14-16"</h2>
+    <div class="container">
+        <div class="question">
+            <h2>Array Manager</h2>
+            <div class="output" id="cOutp1" style="overflow-y: scroll; max-height: 200px; min-height:200px;background-color: black;">Enter Values in the Array, one by one.</div>
+            <input type="text" id="arrdata" placeholder="COLOR NAME" style="width: 60%; margin-left: 5px;">
+            <input type="number" id="indx" placeholder="INDEX" style="width: 20%; margin-left: 5px; margin-right: 5px;">
+            <input type="number" id="count" placeholder="COUNT" style="width: 20%; margin-right: 5px;">
+            <br>
+            <button onclick="adder()">Add to Index</button> <br>
+            <button onclick="clsArr()">Clear</button> <br>
+            <button onclick="deleter()">Remove from Index</button> <br>
+            <button onclick="clrScr()">Clear Screen</button> <br>
+
+        </div>
     </div>
-</div>
+
+    
+    
 <script src=".\script.mjs"></script>
 </body>
 </html>
