@@ -49,6 +49,53 @@
         .assignment-list li a:hover {
             text-decoration: underline;
         }
+
+        .two-column-layout {
+            width: 40%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .two-column-layout li {
+            flex: 1 1 30%;
+            list-style-type: none;
+        }
+
+        .two-column-layout li:nth-child(odd) {
+            margin-right: 10%;
+        }
+
+        .backbutt_loc{
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+        /*z-index: 1000;*/ /*Over All Content.*/
+        }
+
+        .backbutt_mod{
+        background-color: rgba(185, 186, 186, 0.5);
+        color: #333;
+        border: none;
+        padding: 5px 5px;
+        margin-right: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .backbutt_mod:hover {
+        background-color: rgba(170, 170, 170, 0.7); /* change bg on hover. */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* better shadow*/
+        }
+
+        .backbutt_mod:focus {
+        outline: none; /*rem base outln*/
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* cstm fcs outln */
+        }
+
+        .watermark { position: fixed; bottom: 10px;right: 28px; font-size: 14px; color: rgba(37, 37, 37, 0.5); pointer-events: none; }
+
     </style>
 </head>
 <body>
@@ -59,9 +106,17 @@
 	<br>
 
 <div class="container">
+    <div class="watermark">Code by Adeem Amir</div>
+
+    <h2>Creativity</h2>
+    <ul class="assignment-list">
+<li><a href=".\Act 01\index.html">Work 01 - Live Weather Stats</a></li>
+<li><a href=".\Act 02\index.html">Work 02 - Airline Reservation & Price Tracker</a></li>
+<!--li><a href=".\Assignment {asnm}\index.html">Assignment {asnm} - {NMPND}</a></li-->
+    </ul>
+
         <h2>Assignments</h2>
         <ul class="assignment-list">
-
 	<li><a href=".\Assignment 10\index.html">Assignment 10 - Time Format, Multi IF ELSE Check</a></li>
 	<li><a href=".\Assignment 11\index.html">Assignment 11 - Student Data Query</a></li>
 	<li><a href=".\Assignment 12\index.html">Assignment 12 - Array Manager</a></li>
@@ -71,9 +126,7 @@
 	<li><a href=".\Assignment 16\index.html">Assignment 16 - Random Password Generator</a></li>
 	<li><a href=".\Assignment 17\index.html">Assignment 17 - Discount &amp; Tax Generator</a></li>
 	<li><a href=".\Assignment 18\index.html">Assignment 18 - Digital Clock</a></li>
-	<li><a href=".\Assignment 19\index.html">Assignment 19 - Live Weather Stats</a></li>
-	<li><a href=".\Assignment 20\index.html">Assignment 20 - Airline Reservation & Price Tracker</a></li>
-	<li><a href=".\Assignment 21\index.html">Assignment 21 - To-Do List</a></li>
+	<li><a href=".\Assignment 19\index.html">Assignment 19 - To-Do List</a></li>
 	<!--li><a href=".\Assignment {asnm}\index.html">Assignment {asnm} - {NMPND}</a></li-->
         </ul>
 
@@ -90,7 +143,7 @@
         </ul>
         
         <h2>Chapters</h2>
-        <ul class="assignment-list">
+        <ul class="assignment-list two-column-layout">
 	<li><a href=".\Chapters\index.html">Chapters 01-09</a></li>
 	<li><a href=".\Chapters\Chapter 09-11\index.html">Chapters 09-11</a></li>
 	<li><a href=".\Chapters\Chapter 12-13\index.html">Chapters 12-13</a></li>

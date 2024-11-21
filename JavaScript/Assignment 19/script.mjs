@@ -19,81 +19,77 @@ function gotoHome() {
     window.location.href = 'https://adeemamir.github.io/SMIT-Curriculum'
 }
 
-const api = {
-    key: 'b2decc1fe307928afdcc0876d59c149d',
-    base: "https://api.openweathermap.org/data/2.5/"
-};
+/********************************************************************** */
 
-document.addEventListener('DOMContentLoaded', () => {
-    getResults('Karachi'); // Default city on load
+const addSquare = document.getElementById("add-square");
+const squaresContainer = document.getElementById("squares-container");
+
+// declare square array and call data in it from local storage.
+let squares = JSON.parse(localStorage.getItem("squares")) || [];
+
+function renderSquares() {
+  squaresContainer.innerHTML = "";
+  squares.forEach((square, index) => { //mapping for each,
+    const squareElement = document.createElement("div"); //create div
+    squareElement.className = "square"; // give div classname square
+    if (square.new) {//if square's new
+      squareElement.classList.add("new"); // allot anim only to new
+      setTimeout(() => {
+        square.new = false; // disable anim once done // crude method, but no time to fix
+        saveSquares();
+      }, 500);
+    }
+    squareElement.style.backgroundColor = square.color || "#fff";   //update color or paint white.
+
+    const textArea = document.createElement("textarea"); //create text area
+    textArea.value = square.text || "";
+    textArea.placeholder = "Write something...";
+    textArea.addEventListener("input", (e) => { // allows typing
+      squares[index].text = e.target.value;
+      saveSquares();
+    });
+
+    const deleteBtn = document.createElement("div");
+    deleteBtn.className = "delete";
+    deleteBtn.textContent = "X";
+    deleteBtn.addEventListener("click", () => {
+      squares.splice(index, 1); //needed for ls, avoiding errs.
+      saveSquares();
+      renderSquares();
+    });
+
+    const colorChanger = document.createElement("div");
+    colorChanger.className = "color-changer";
+    colorChanger.addEventListener("click", () => {
+      const newColor = getRandomColor();
+      squares[index].color = newColor;
+      saveSquares();
+      renderSquares();
+    }); // creates new div with color // crude method, but wokrs.
+
+    squareElement.appendChild(textArea);
+    squareElement.appendChild(deleteBtn);
+    squareElement.appendChild(colorChanger);
+    squaresContainer.appendChild(squareElement);
+    // reallot old elements to new color div // crude method, I know.
+    // better way would be to just append a color class.
+  });
+}
+
+function getRandomColor() {
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    // random color gen.
+  }    
+
+function saveSquares() {
+  localStorage.setItem("squares", JSON.stringify(squares));
+  // save squares to local storage.
+}
+
+addSquare.addEventListener("click", () => {
+  squares.push({ text: "", color: "#fff", new: true });
+  saveSquares();
+  renderSquares();
 });
 
-
-const searchbox = document.querySelector('.search-box');
-
-let debounceTimer;
-searchbox.addEventListener('input', () => {
-    clearTimeout(debounceTimer); // Clear the previous timer
-    if (searchbox.value.length > 2) {
-        debounceTimer = setTimeout(() => {
-            getResults(searchbox.value);
-        }, 100); // Delay of 500ms
-    }
-});
-
-function getResults(query) {
-    fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-        .then(weather => weather.json())
-        .then(displayResults)
-        .catch(err => {
-            console.error('Error fetching weather data:', err);
-            document.querySelector('.location .city').innerText = "City not found!";
-            document.body.style.backgroundImage = `url('files/watermk.png')`; // Default image
-        });
-}
-
-function displayResults(weather) {
-    let city = document.querySelector('.location .city');
-    city.innerText = `${weather.name}, ${weather.sys.country}`;
-
-    let now = new Date();
-    let date = document.querySelector('.location .date');
-    date.innerText = dateBuilder(now);
-
-    let temp = document.querySelector('.current .temp');
-    temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
-
-    let weather_el = document.querySelector('.current .weather');
-    let weatherCondition = weather.weather[0].main;
-    weather_el.innerText = weatherCondition;
-
-    let hilow = document.querySelector('.hi-low');
-    hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-
-    updateBackground(weatherCondition);
-}
-
-function updateBackground(weatherCondition) {
-    let backgroundGif = `${weatherCondition.toLowerCase()}.gif`;
-
-    // More complex for the most unncessary reasons :P
-    const validConditions = ['clear', 'clouds', 'rain', 'drizzle', 'thunderstorm', 'snow', 'mist', 'fog', 'haze', 'smoke'];
-    if (!validConditions.includes(weatherCondition.toLowerCase())) {
-        backgroundGif = 'watermk.png';
-    }
-
-    document.body.style.backgroundImage = `url('files/${backgroundGif}')`;
-}
-
-function dateBuilder(d) {
-    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    let day = days[d.getDay()];
-    let date = d.getDate();
-    let month = months[d.getMonth()];
-    let year = d.getFullYear();
-
-    return `${day} ${date} ${month} ${year}`;
-}
-/*Partial Inspiration, thanks and credits to Shehryar Khan https://github.com/ShehrryarKhan/WeatherApp-Es6*/
+renderSquares();
