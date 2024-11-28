@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Ticket Booking</title>
+    <link rel="stylesheet" href="css\styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Airline Ticket Booking and Price Tracker</h1>
+        <p>Search, Book, and Track Flights Efficiently!</p>
+        <p>DSA PROJECT!</p>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <h2>Search Flights</h2>
+            <div class="inputs">
+                <input type="text" id="sourceInput" placeholder="Enter Source City/Airport">
+                <input type="text" id="destinationInput" placeholder="Enter Destination City/Airport">
+                <input type="text" id="airlineInput" placeholder="Enter Airline Name or Code">
+                <input type="number" id="priceThreshold" placeholder="Enter Price Threshold (PKR)">
+                <button id="startTrackingButton">Start Price Tracking</button>
+                <button><a href="login.html" class="button">Login(Incomplete)</a></button>
+                <button><a href="graph_vis.html" class="button">View Graph</a></button>
+                <button><a href="bst_vis.html" class="button">BST Vis(Broken)</a></button>
+                <button id="forceUpdateButton">Force Price Update</button>
+            </div>
+        </section>
+
+        <section class="flights-section">
+            <h2>Available Flights</h2>
+            <div id="flightsContainer" class="flights-container">
+            </div>
+        </section>
+
+        <!--section class="force-update-section">
+            
+        </section> -->
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Airline Booking System. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/app.js" type="module"></script>
+</body>
+</html>
