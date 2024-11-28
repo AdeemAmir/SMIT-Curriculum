@@ -9,10 +9,12 @@ body {
     line-height: 1.6;
     background-color: #f5f7fa;
     color: #333;
+    transition: filter 0.3s ease-in-out;
+    
 }
 
 .header {
-    background-color: #11ccb3;
+    background-color: #026457;
     color: #fff;
     padding: 40px 20px;
     text-align: center;
@@ -26,6 +28,61 @@ body {
 
 .header p {
     font-size: 1.1rem;
+}
+
+.user-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#usernameDisplay {
+    font-weight: bold;
+}
+
+.user-info-section {
+    position: absolute;  
+    top: 30px; 
+    right: 10px;         
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: none; 
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    max-height: 400px; 
+    overflow-y: auto; 
+}
+
+.user-info-section h3 {
+    margin-bottom: 10px;
+}
+
+.user-info-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.user-info-section li {
+    margin-bottom: 15px;
+}
+
+
+#bookFlightButton {
+    padding: 10px 20px;
+    background-color: #11ccb3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#bookFlightButton:hover {
+    background-color: #ff0000;
 }
 
 main {
@@ -79,7 +136,7 @@ main {
 }
 
 .inputs button:hover {
-    background-color: #11ccb3;
+    background-color: #17cc11;
     transform: translateY(-2px);
 }
 
@@ -89,7 +146,6 @@ main {
 
 .flights-container {
     display: inline;
-    
     /*grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));*/
     gap: 20px;
 }
@@ -168,6 +224,24 @@ main {
     margin-top: 10px;
 }
 
+.top_btn:focus {
+    outline: none;
+    border-color: #11ccb3;
+}
+
+.top_btn {
+    background-color: #11ccb3;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.top_btn:hover {
+    background-color: #11ccb3;
+    transform: translateY(-2px);
+}
+
+/*Basic Responsiveness, set columns at 100% if at this res.*/
 @media (max-width: 768px) {
     .inputs {
         flex-direction: column;

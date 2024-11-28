@@ -1,6 +1,7 @@
 import { BST } from './priceBST.js';
 import { Graph } from './flightgraph.js';
 
+
 let flights = [];
 let selectedFlight = null;
 const priceBST = new BST();
@@ -17,10 +18,13 @@ async function fetchFlights() {
         flights = await response.json();
         displayFlights(flights);
 
+        // Build BST and Graph
         flights.forEach(flight => {
-            priceBST.insert(flight.price_pkr, flight);
+            priceBST.insert(flight.price_pkr, flight); // Insert into BST based on price
             routeGraph.addRoute(flight.dep_city, flight.arrv_city);
         });
+
+
     } catch (error) {
         console.error('Error fetching flights:', error);
     }
@@ -51,6 +55,8 @@ function selectFlight(flightDiv, flight) {
     selectedFlight = flight;
     console.log('Selected Flight:', flight);
 }
+
+
 
 function getFilteredFlights() {
     const source = document.getElementById('sourceInput').value.toLowerCase();
@@ -98,7 +104,8 @@ function startPriceTracking() {
         isTracking = true;
         console.log('Price tracking started');
     } else {
-        console.log('Price tracking is already running');
+        console.log('Price tracking stopeed');
+        isTracking = false;
     }
 }
 
@@ -128,6 +135,99 @@ function forcePriceUpdate() {
         console.log('Price updates started.');
     }
 }
+
+document.getElementById('bookFlightButton').addEventListener('click', function() {
+    if (!selectedFlight) {
+        alert("Please select a flight to book.");
+        return;
+    }
+
+    const phone = prompt("Enter your phone number:");
+    const cnic = prompt("Enter your CNIC number:");
+    const numSeats = parseInt(prompt("Enter number of seats:"));
+    const seatClass = prompt("Enter seat class (Economy/Business/First):");
+
+    if (!phone || !cnic || isNaN(numSeats) || numSeats <= 0 || !seatClass) {
+        alert("Please provide valid information.");
+        return;
+    }
+
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    const booking = {
+        userId: loggedInUser.CstID,
+        phone,
+        cnic,
+        numSeats,
+        seatClass,
+        flight: selectedFlight
+    };
+
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    bookings.push(booking);
+
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+
+    alert("Flight booked successfully!");
+    console.log("Booking Details:", booking);
+});
+
+const button = document.getElementById('viewBookedFlightsButton');
+const userInfoSection = document.getElementById('userInfoSection');
+
+button.addEventListener('mouseover', function() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (!loggedInUser) {
+        alert("You must be logged in to view booked flights.");
+        return;
+    }
+
+    const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+    const userBookings = bookings.filter(booking => booking.userId === loggedInUser.CstID);
+
+    if (userBookings.length === 0) {
+        alert("You have no booked flights.");
+        return;
+    }
+
+
+    let bookedFlightsHtml = `<h3>Your Customer ID: ${loggedInUser.CstID}</h3>`;
+    bookedFlightsHtml += `<ul>`;
+
+    userBookings.forEach(booking => {
+        bookedFlightsHtml += `
+            <li>
+                <strong>Flight: ${booking.flight.flight_code}</strong><br>
+                <strong>Airline:</strong> ${booking.flight.airline_name}<br>
+                <strong>From:</strong> ${booking.flight.dep_city}, ${booking.flight.dep_airport}<br>
+                <strong>To:</strong> ${booking.flight.arrv_city}, ${booking.flight.arrv_airport}<br>
+                <strong>Seats:</strong> ${booking.numSeats} ${booking.seatClass} class<br>
+                <strong>CNIC:</strong> ${booking.cnic}<br>
+                <strong>Phone:</strong> ${booking.phone}
+            </li>
+        `;
+    });
+
+    bookedFlightsHtml += `</ul>`;
+
+    userInfoSection.innerHTML = bookedFlightsHtml;
+    userInfoSection.style.display = 'block';
+});
+
+
+button.addEventListener('mouseleave', function() {
+    userInfoSection.style.display = 'none';
+});
+
+userInfoSection.addEventListener('mouseenter', function() {
+    userInfoSection.style.display = 'block';
+});
+
+userInfoSection.addEventListener('mouseleave', function() {
+    userInfoSection.style.display = 'none'; 
+});
 
 // button stuff
 document.getElementById('sourceInput').addEventListener('input', filterFlights);

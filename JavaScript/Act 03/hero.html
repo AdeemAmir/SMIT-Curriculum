@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Ticket Booking</title>
+    <link rel="stylesheet" href="css\styles.css">
+    <style>
+                .blurred {
+            filter: blur(500px);
+            pointer-events: none;
+                }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Airline Ticket Booking and Price Tracker</h1>
+        <p>Search, Book, and Track Flights Efficiently!</p>
+    
+<div class="user-info">
+    <button><a href="graph_vis.html" class="top_btn">View Graph</a></button>
+<button id="viewBookedFlightsButton" class="top_btn">Booked</button>
+    <span id="usernameDisplay">Not Logged In</span>
+    
+    <button id="logout-btn" class="top_btn">Logout</button>
+</div>
+<div id="userInfoSection" class="user-info-section"></div>
+    </header>
+
+    <main>
+
+        <section class="search-section">
+            <h2>Search Flights</h2>
+            <div class="inputs">
+                <input type="text" id="sourceInput" placeholder="Enter Source City/Airport">
+                <input type="text" id="destinationInput" placeholder="Enter Destination City/Airport">
+                <input type="text" id="airlineInput" placeholder="Enter Airline Name or Code">
+                <input type="number" id="priceThreshold" placeholder="Enter Price Threshold (PKR)">
+                <button id="startTrackingButton">Start Price Tracking</button>
+                <button id="bookFlightButton" class="top_btn">Book Selected Flight</button>
+                <button id="forceUpdateButton">Force Price Update</button>
+            </div>
+        </section>
+
+        <section class="flights-section">
+            <h2>Available Flights</h2>
+            <div id="flightsContainer" class="flights-container">
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Airline Booking System. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/log_control.js"></script>
+    <script src="scripts/app.js" type="module"></script>
+
+
+</body>
+</html>
