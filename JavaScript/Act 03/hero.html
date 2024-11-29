@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airline Ticket Booking</title>
+    <title>Airline Dashboard</title>
     <link rel="stylesheet" href="css\styles.css">
     <style>
                 .blurred {
@@ -28,15 +28,18 @@
     </header>
 
     <main>
+<div id="resultsContainer"></div>
 
         <section class="search-section">
             <h2>Search Flights</h2>
             <div class="inputs">
-                <input type="text" id="sourceInput" placeholder="Enter Source City/Airport">
-                <input type="text" id="destinationInput" placeholder="Enter Destination City/Airport">
-                <input type="text" id="airlineInput" placeholder="Enter Airline Name or Code">
-                <input type="number" id="priceThreshold" placeholder="Enter Price Threshold (PKR)">
+                <input type="text" id="sourceInput" placeholder="From: Country / City / Airport">
+                <input type="text" id="destinationInput" placeholder="To: Country / City / Airport">
+                <input type="text" id="airlineInput" placeholder="Enter Airline">
+                <input type="date" id="dateInput" placeholder="Enter Date">
+                <input type="number" id="priceThreshold" placeholder="Enter Price Cap">
                 <button id="startTrackingButton">Start Price Tracking</button>
+                <button id="checkWeatherForFlights">Weather Call</button>
                 <button id="bookFlightButton" class="top_btn">Book Selected Flight</button>
                 <button id="forceUpdateButton">Force Price Update</button>
             </div>

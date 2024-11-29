@@ -1,5 +1,4 @@
 body {
-    background-image: url('../files/live.png');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
@@ -13,18 +12,7 @@ body {
     align-items: center;
     color: white;
     overflow: hidden;
-}
-
-#login-status {
-    font-size: 200px;
-    font-weight: bold;
-    z-index: -1;
-    color: red;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    
 }
 
 section {
@@ -56,17 +44,75 @@ section .btnLogin-popup1:hover {
     border: 2px solid #162938;
 }
 
+.active-popup {
+    font-family: 'Arial', sans-serif;
+    /* maybe later */
+}
+
+#login-status {
+    font-size: 200px;
+    font-weight: bold;
+    z-index: -1;
+    color: red;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.logged-in {
+    color: green;
+    text-shadow: 2px 2px 5px rgba(0, 255, 0, 0.7), 0 0 25px rgba(0, 255, 0, 0.5);
+    animation: pulse-green 1.5s infinite alternate;
+}
+
+.not-logged-in {
+    color: red;
+    text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.5);
+    animation: pulse-red 3s infinite alternate;
+}
+
+.logged-in, .not-logged-in {
+    font-family: "Protest Revolution", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center; 
+    display: inline-block;
+    transform-origin: center;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(1);
+        text-shadow: 2px 2px 5px rgba(0, 255, 0, 0.7), 0 0 25px rgba(0, 255, 0, 0.5);
+    }
+    100% {
+        transform: scale(1.1); /* Slightly enlarges the text */
+        text-shadow: 3px 3px 10px rgba(0, 255, 0, 0.9), 0 0 35px rgba(0, 255, 0, 0.7);
+    }
+}
+
+@keyframes pulse-red {
+    0% {
+        transform: scale(1);
+        text-shadow: 2px 2px 5px rgba(255, 0, 0, 0.7), 0 0 25px rgba(255, 0, 0, 0.5);
+    }
+    100% {
+        transform: scale(1.02);
+        text-shadow: 3px 3px 10px rgba(255, 0, 0, 0.9), 0 0 35px rgba(255, 0, 0, 0.7);
+    }
+}
+
 .wrapper {
     position: relative;
     width: 400px;
     overflow: hidden;
     transform: scale(0);
     height: 440px;
-    background: rgba(80, 80, 80, 0.5);
-    border: 2px solid rgba(255, 255, 255, .5);
+    /*background: transparent;*/
+    /*border: 2px solid rgba(255, 255, 255, .5);*/
     border-radius: 20px;
     /*backdrop-filter: blur(20px);*/
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    /*box-shadow: 0 0 30px rgba(0, 0, 0, .5);*/
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,14 +143,15 @@ section .btnLogin-popup1:hover {
     transform: translateX(0);
 }
 .wrapper .form-box{
-    width: 100%;
+    font-family: "PT Serif", serif;
+    width: 83%;
     padding: 40px;
 }
 .form-box h2 {
     font-size: 2em;
     color: white;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+
 }
 
 .input-box {
@@ -128,6 +175,7 @@ section .btnLogin-popup1:hover {
 }
 
 .input-box input {
+    
     height: 100%;
     width: 100%;
     color: #fff;
@@ -152,10 +200,13 @@ section .btnLogin-popup1:hover {
 }
 
 .btn {
+    font-family: "PT Serif", serif;
     width: 100%;
     height: 45px;
-    background: #000;
-    border: none;
+    
+    border: 3px solid rgba(30, 30, 30, 0.3);;
+    background-color: transparent;
+    
     outline: none;
     border-radius: 6px;
     cursor: pointer;
@@ -165,9 +216,9 @@ section .btnLogin-popup1:hover {
 }
 
 .btn:hover {
-    background-color: transparent;
+    background: rgba(30, 30, 30, 0.3);
     color: #fff;
-    border: 3px solid black;
+    border: 3px solid rgba(30, 30, 30, 0.5);
 }
 
 .login-register {
@@ -183,13 +234,13 @@ section .btnLogin-popup1:hover {
 }
 
 .login-register a {
-    color: #000;
+    color: gray;
     margin-left: 5px;
     text-decoration: none;
 }
 
 .login-register a:hover {
-    color: #fff;
+    color: rgba(20, 20, 20, 1);
     text-decoration: underline;
 }
 
