@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let exists = false; // Use let to reassign exists
         // Try each format
         for (let format of formats) {
-            const imageUrl = `../files/live${i}.${format}`;
+            const imageUrl = `files/live${i}.${format}`;
             if (checkImageExists(imageUrl)) { // Assume checkImageExists is a function that returns true/false
                 images.push(imageUrl);
                 exists = true;
