@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Try each format
         for (let format of formats) {
             const imageUrl = `files/live${i}.${format}`;
+            console.log(imageUrl);
             if (checkImageExists(imageUrl)) { // Assume checkImageExists is a function that returns true/false
                 images.push(imageUrl);
                 exists = true;
