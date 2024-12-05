@@ -119,24 +119,24 @@ function startPriceTracking() {
                 });
                 clearInterval(prTrackInterval);
                 isTracking = false;
-                console.log('Price tracking stopped');
+                crNot('Price tracking stopped');
             }
         }, 1000);
         isTracking = true;
-        console.log('Price tracking started');
+        crNot('Price tracking started');
     } else {
-        console.log('Price tracking stopeed');
+        crNot('Price tracking stopeed');
         isTracking = false;
     }
 }
 
 function forcePriceUpdate() {
     if (isUpdating) {
-        console.log("Stopping price updates...");
+        crNot("Stopping price updates...");
         clearInterval(prUpdInterval); // inv back to null
         isUpdating = false;
     } else {
-        console.log("Starting price updates...");
+        crNot("Starting price updates...");
         prUpdInterval = setInterval(() => {
             console.log("Updating prices...");
             const filteredFlights = getFilteredFlights(); 
@@ -152,13 +152,14 @@ function forcePriceUpdate() {
                 console.log(`Updated price for flight ${flight.flight.code} - ${flight.flight.name}: PKR ${flight.price}`);
             });
             displayFlights(filteredFlights);
-        }, 5000);
+        }, 4000);
         isUpdating = true;
     }
 }
 
 function minMaxTracking() {
     if (MinMaxTracking) {
+        crNot("Min-Max Stopped");
         clearInterval(minMaxInterval);
         MinMaxTracking = false;
         return;
@@ -183,10 +184,12 @@ function minMaxTracking() {
         return;
     }  
     }, 1000);
+    crNot("Min-Max Started");
     MinMaxTracking = true;
 }
 
 async function chkWeath4Flights(flights) {
+    crNot("Calling WeatherAPI, Please wait.");
     const weatherChecks = flights.map(flight => {
         return Promise.all([
             getWeather(flight.departure.city, flight.departure.country),
