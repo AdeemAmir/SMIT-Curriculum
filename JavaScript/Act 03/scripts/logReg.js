@@ -10,22 +10,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const images = [];
 
     for (let i = 1; i <= totalImages; i++) {
-        let exists = false; // Use let to reassign exists
-        // Try each format
+        let exists = false;
+        
         for (let format of formats) {
-            const imageUrl = `../files/live${i}.${format}`;
-            if (checkImageExists(imageUrl)) { // Assume checkImageExists is a function that returns true/false
+            const imageUrl = `files/live${i}.${format}`;
+            console.log(imageUrl);
+            if (checkImageExists(imageUrl)) {
                 images.push(imageUrl);
                 exists = true;
-                break; // If the image exists, break out of the loop
+                break;
             }
         }}
 
-
     function checkImageExists(imageUrl) {
         return fetch(imageUrl, { method: 'HEAD' })
-            .then(response => response.ok)  // Return true if the image exists
-            .catch(() => false);  // Return false if there is an error (e.g., network issue or 404)
+            .then(response => response.ok)
+            .catch(() => false);
     }
 
 
@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.backgroundImage = `url(${images[randomIndex]})`;
 
 });
-
-
 
 window.onload = function() {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
@@ -68,19 +66,27 @@ loginLink.addEventListener('click', () => {
   wrapper.classList.remove('active');
 });
 
-iconClose.addEventListener('click', () => {
+/*iconClose.addEventListener('click', () => {
   wrapper.classList.remove('active-popup');
-});
+}); FOR THE X ICON*/ 
 
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
+    // Generate unique CstID :P
+    const CstID = Date.now();
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
     const email = document.getElementById("signup-email").value;
 
-    // Generate unique CstID :P
-    const CstID = Date.now();
+    const c1 = /.{6,}/.test(password);
+    const c2 = /^[a-zA-Z]/.test(password);
+    const c3 = /^(?=.*[a-zA-Z])(?=.*\d)/.test(password); 
+
+    if (!c1 || !c2 || !c3) {
+        alert("Password must be at least 6 characters long, start with a letter, and contain both letters and numbers.");
+        return;
+    }
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
     if (users.some(user => user.email === email)) {
@@ -115,7 +121,5 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 
     localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-    //console.log("Login successful!");
-    //alert("Login successful!");
     window.location.href = "hero.html";
 });

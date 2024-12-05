@@ -1,79 +1,42 @@
-import { BST } from './priceBST.js';
-import { Graph } from './flightgraph.js';
-import { apiCall } from './manage.js';
+import { BST } from './ds_BST.js';
+import { Graph } from './ds_Graph.js';
+import { crNot } from './notif.js'; 
+import { getWeather } from './weathCall.js';
+import { openBookingPopup } from './bookingPopup.js';
+import { getUserBookingsHtml } from './bookedFlH.js';
+import { closePopup } from './popup.js';
+import { fDate } from './fDateUtil.js';
+
+const globalBST = new BST();
+const routeGraph = new Graph();
 
 let flights = [];
 let greyedOutFlights = [];
 let selectedFlight = null;
-const priceBST = new BST();
-const routeGraph = new Graph();
-let api = {key: '',base: "https://api.openweathermap.org/data/2.5/"};
 
-let priceTrackingInterval = null; 
+let prTrackInterval = null; 
 let isTracking = false;
-let priceUpdateInterval = null;
+let prUpdInterval = null;
 let isUpdating = false;
+let minMaxInterval = null;
+let MinMaxTracking = false;
 
-apiCall().then(x => {
-    api.key = x;
-});
-
-async function getWeather(city, country) {
-    try {
-        const response = await fetch(`${api.base}weather?q=${city},${country}&appid=${api.key}&units=metric`);
-            if (response.status === 404) {console.log(`City ${city} not found`);}
-        const data = await response.json();    
-        return data;
-    } catch (error) {
-        console.log('Network error or other unexpected issue occurred');
-    }
-
-    const data = await response.json();
-
-    // Check for weather conditions or visibility
-    if (data && data.weather && data.weather.some(condition => condition.main === 'Thunderstorm' || condition.main === 'Fog' || condition.main === 'Rain' || data.visibility < 1000)) {
-        return true;
-    }
-    return false;
-}
 
 async function fetchFlights() {
     try {
-        const response = await fetch('flights.json');
+        const response = await fetch('files/flights.json');
         flights = await response.json();
-        displayFlights(flights);
 
-        // Build BST and Graph
         flights.forEach(flight => {
-            priceBST.insert(flight.price_pkr, flight); // Insert into BST based on price
-            routeGraph.addRoute(flight.dep_city, flight.arrv_city);
+            flight.orig_price = flight.price; // Used to limit proliferation of forcePriceUpdate
+            globalBST.insert(flight.price, flight.flight.code);
+            routeGraph.addRoute(flight.departure.city.toLowerCase(), flight.arrival.city.toLowerCase(), flight.price);
         });
 
-
+        displayFlights(flights);
     } catch (error) {
         console.error('Error fetching flights:', error);
     }
-}
-
-function checkWeatherForFlights(flights) {
-    const weatherChecks = flights.map(flight => {
-        return Promise.all([
-            getWeather(flight.dep_city, flight.dep_country),
-            getWeather(flight.arrv_city, flight.arrv_country)
-        ]).then(results => {
-            const [isBadWeatherDep, isBadWeatherArr] = results;
-            if (isBadWeatherDep || isBadWeatherArr) {
-                greyedOutFlights.push(flight.flight_number);
-                return true; // This is greyed out
-            }
-
-            return false; // This fight is okay
-        });
-    });
-
-    Promise.all(weatherChecks).then(() => {
-        displayFlights(flights);
-    });
 }
 
 function displayFlights(flights) {
@@ -81,46 +44,49 @@ function displayFlights(flights) {
     flightsContainer.innerHTML = '';
 
     flights.forEach(flight => {
-        
         const flightDiv = document.createElement('div');
         flightDiv.className = 'flight';
-        flightDiv.id = `flight-${flight.flight_number}`;
-        if (greyedOutFlights.includes(flight.flight_number)) {
+        flightDiv.id = `flight-${flight.flight.code}`;
+        if (greyedOutFlights.includes(flight.flight.code)) {
             flightDiv.classList.add('greyed-out');
         }
         flightDiv.innerHTML = `
-            <h3>${flight.flight_code} - ${flight.airline_name}</h3>
-            <p><strong>From:</strong> ${flight.dep_city}, ${flight.dep_country} (${flight.dep_airport})</p>
-            <p><strong>To:</strong> ${flight.arrv_city}, ${flight.arrv_country} (${flight.arrv_airport})</p>
-            <p><strong>Departure:</strong> ${flight.dep_time}</p>
-            <p><strong>Arrival:</strong> ${flight.arrv_time}</p>
-            <p class="price"><strong>Price:</strong> PKR ${flight.price_pkr}</p>
+            <h3>${flight.flight.code} - ${flight.flight.name}</h3>
+            <p><strong>From:</strong> ${flight.departure.city}, ${flight.departure.country} (${flight.departure.airport})</p>
+            <p><strong>To:</strong> ${flight.arrival.city}, ${flight.arrival.country} (${flight.arrival.airport})</p>
+            <p><strong>Departure:</strong> ${fDate(flight.departure.date)} - <strong>Arrival:</strong> ${fDate(flight.arrival.date)}</p>
+            <p class="price"><strong>Price:</strong> PKR ${flight.price}</p>
         `;
         flightDiv.addEventListener('click', () => selectFlight(flightDiv, flight));
         flightsContainer.appendChild(flightDiv);
     });
 }
 
-function selectFlight(flightDiv, flight) {
-    document.querySelectorAll('.flight').forEach(f => f.classList.remove('selected'));
-    flightDiv.classList.add('selected');
-    selectedFlight = flight;
-    console.log('Selected Flight:', flight);
-}
-
-
-
 function getFilteredFlights() {
-    const source = document.getElementById('sourceInput').value.toLowerCase();
-    const destination = document.getElementById('destinationInput').value.toLowerCase();
-    const airline = document.getElementById('airlineInput').value.toLowerCase();
-    const date = document.getElementById('dateInput').value.toLowerCase();
+    const source = (document.getElementById('sourceInput').value || '').trim().toLowerCase();
+    const destination = (document.getElementById('destinationInput').value || '').trim().toLowerCase();
+    const airline = (document.getElementById('airlineInput').value || '').trim().toLowerCase();
+    const date = (document.getElementById('dateInput').value || '').trim().toLowerCase();
 
     return flights.filter(flight => {
-        const matchesSource = !source || flight.dep_city.toLowerCase().includes(source) || flight.dep_airport.toLowerCase().includes(source) || flight.dep_country.toLowerCase().includes(source);
-        const matchesDestination = !destination || flight.arrv_city.toLowerCase().includes(destination) || flight.arrv_airport.toLowerCase().includes(destination) || flight.arrv_country.toLowerCase().includes(destination);
-        const matchesAirline = !airline || flight.airline_name.toLowerCase().includes(airline) || flight.flight_code.toLowerCase().includes(airline);
-        const matchesDate = !date || flight.dep_time.toLowerCase().includes(date);
+        const matchesSource = !source || 
+            (flight.departure.city && flight.departure.city.toLowerCase().includes(source)) ||
+            (flight.departure.airport && flight.departure.airport.toLowerCase().includes(source)) ||
+            (flight.departure.country && flight.departure.country.toLowerCase().includes(source));
+
+        const matchesDestination = !destination || 
+            (flight.arrival.city && flight.arrival.city.toLowerCase().includes(destination)) ||
+            (flight.arrival.airport && flight.arrival.airport.toLowerCase().includes(destination)) ||
+            (flight.arrival.country && flight.arrival.country.toLowerCase().includes(destination));
+
+        const matchesAirline = !airline || 
+            (flight.flight.name && flight.flight.name.toLowerCase().includes(airline)) ||
+            (flight.flight.code && flight.flight.code.toLowerCase().includes(airline)) ||
+            (flight.flight.number && flight.flight.number.toLowerCase().includes(airline));
+
+        const matchesDate = !date || 
+            (flight.departure.date && flight.departure.date.toLowerCase().includes(date));
+
         return matchesSource && matchesDestination && matchesAirline && matchesDate;
     });
 }
@@ -130,70 +96,32 @@ function filterFlights() {
     displayFlights(filteredFlights);
 }
 
-function createNotification(message) {
-    const resultsContainer = document.getElementById('resultsContainer') || createResultsContainer();
-
-    const flightDiv = document.createElement('div');
-    flightDiv.classList.add('price-drop-result');
-
-    const flightDetails = document.createElement('p');
-    flightDetails.textContent = message;
-
-        const closeButton = document.createElement('span');
-        closeButton.classList.add('close-btn');
-        closeButton.textContent = '×';
-        closeButton.onclick = function () {
-            flightDiv.remove(); 
-        };
-        flightDiv.appendChild(closeButton);
-    document.getElementById('resultsContainer').style.display = 'block';
-    flightDiv.appendChild(flightDetails);
-    resultsContainer.appendChild(flightDiv); 
-}
-
-function createResultsContainer() {
-    const container = document.createElement('div');
-    container.id = 'resultsContainer';
-    container.style.display = 'none';
-    container.classList.add('floating-container');
-    document.body.appendChild(container);
-
-    const closeAllButton = document.createElement('span');
-    closeAllButton.classList.add('close-all-btn');
-    closeAllButton.textContent = '×';
-    closeAllButton.onclick = function () {
-        container.style.display = 'none';
-    };
-    container.appendChild(closeAllButton);
-    return container;
+function selectFlight(flightDiv, flight) {
+    document.querySelectorAll('.flight').forEach(f => f.classList.remove('selected'));
+    flightDiv.classList.add('selected');
+    selectedFlight = flight;
+    console.log('Selected Flight:', flight);
 }
 
 function startPriceTracking() {
-    const source = document.getElementById('sourceInput').value.toLowerCase();
-    const destination = document.getElementById('destinationInput').value.toLowerCase();
-    const airline = document.getElementById('airlineInput').value.toLowerCase();
-    const date = document.getElementById('dateInput').value.toLowerCase();
     const threshold = parseInt(document.getElementById('priceThreshold').value);
-
     if (isNaN(threshold) || threshold <= 0) {
-        alert('Please enter a valid price threshold.');
+        crNot('Please enter a valid price threshold.');
         return;
     }
-
     if (!isTracking) {
-        priceTrackingInterval = setInterval(() => {
+        prTrackInterval = setInterval(() => {
             const filteredFlights = getFilteredFlights();
-            const priceDroppedFlights = filteredFlights.filter(flight => flight.price_pkr <= threshold);
-            if (priceDroppedFlights.length > 0) {
-                priceDroppedFlights.forEach(flight => {
-                    createNotification(`Price for flight ${flight.flight_code} has dropped below the threshold! New price: PKR ${flight.price_pkr}`);
+            const prDrpdFlights = filteredFlights.filter(flight => flight.price <= threshold);
+            if (prDrpdFlights.length > 0) {
+                prDrpdFlights.forEach(flight => {
+                    crNot(`Price for flight ${flight.flight.code} has dropped below the threshold! New price: PKR ${flight.price}`);
                 });
-                clearInterval(priceTrackingInterval);
+                clearInterval(prTrackInterval);
                 isTracking = false;
                 console.log('Price tracking stopped');
             }
         }, 1000);
-
         isTracking = true;
         console.log('Price tracking started');
     } else {
@@ -205,137 +133,228 @@ function startPriceTracking() {
 function forcePriceUpdate() {
     if (isUpdating) {
         console.log("Stopping price updates...");
-        clearInterval(priceUpdateInterval); // inv back to null
+        clearInterval(prUpdInterval); // inv back to null
         isUpdating = false;
-        console.log('Start Price Update'); 
-        console.log('Price updates stopped.');
     } else {
         console.log("Starting price updates...");
-        priceUpdateInterval = setInterval(() => {
+        prUpdInterval = setInterval(() => {
             console.log("Updating prices...");
             const filteredFlights = getFilteredFlights(); 
             flights.forEach(flight => {
                 const priceChange = Math.floor(Math.random() * 2000) - 1000; // +-1000
-                flight.price_pkr = Math.max(flight.price_pkr + priceChange, 1000); 
-                priceBST.insert(flight.price_pkr, flight);
-                console.log(`Updated price for flight ${flight.flight_code}: PKR ${flight.price_pkr}`);
+                const orig_price = flight.orig_price;
+                let bounds = [(orig_price * 0.95), (orig_price * 1.05)];
+                let newPrice = orig_price + priceChange;
+                if (newPrice < bounds[0]) {newPrice = bounds[0];}
+                else if (newPrice > bounds[1]) {newPrice = bounds[1];}
+                flight.price = newPrice;
+                globalBST.insert(flight.price, flight.flight.code);
+                console.log(`Updated price for flight ${flight.flight.code} - ${flight.flight.name}: PKR ${flight.price}`);
             });
-
             displayFlights(filteredFlights);
         }, 5000);
         isUpdating = true;
-        console.log('Stop Price Update');
-        console.log('Price updates started.');
     }
+}
+
+function minMaxTracking() {
+    if (MinMaxTracking) {
+        clearInterval(minMaxInterval);
+        MinMaxTracking = false;
+        return;
+    }
+
+    const filteredFlights = getFilteredFlights();
+    const minMaxBST = new BST();
+
+    filteredFlights.forEach(flight => {
+        minMaxBST.insert(flight.price, flight.flight.code);
+    });
+
+    minMaxInterval = setInterval(() => {
+    if (minMaxBST.root) {
+        const minPriceFlight = minMaxBST.findMin();
+        const maxPriceFlight = minMaxBST.findMax();
+
+        console.log(`Cheapest flight: ${minPriceFlight.value} (PKR ${minPriceFlight.key})`);
+        console.log(`Most expensive flight: ${maxPriceFlight.value} (PKR ${maxPriceFlight.key})`);
+    } else {
+        console.log("No flights match the selected criteria.");
+        return;
+    }  
+    }, 1000);
+    MinMaxTracking = true;
+}
+
+async function chkWeath4Flights(flights) {
+    const weatherChecks = flights.map(flight => {
+        return Promise.all([
+            getWeather(flight.departure.city, flight.departure.country),
+            getWeather(flight.arrival.city, flight.arrival.country)
+        ]).then(results => {
+            const [isBadWeatherDep, isBadWeatherArr] = results;
+            if (isBadWeatherDep || isBadWeatherArr) {
+                greyedOutFlights.push(flight.flight.code);
+                routeGraph.removeRoute(flight.departure.city.toLowerCase(), flight.arrival.city.toLowerCase());
+                return true;
+            }
+            return false;
+        });
+    });
+    Promise.all(weatherChecks).then(() => {
+        displayFlights(flights);
+    });
+}
+
+function suggestRoute() {
+    const sourceCity = document.getElementById('sourceInput').value.toLowerCase();
+    const destinationCity = document.getElementById('destinationInput').value.toLowerCase();
+
+    if (!sourceCity || !destinationCity) {
+        crNot("Please enter both source and destination cities.");
+        return;
+    }
+
+    const alternateRoutes = routeGraph.findAllPaths(sourceCity, destinationCity);
+
+    if (alternateRoutes.length === 0) {
+        crNot(`No alternate routes found from ${sourceCity} to ${destinationCity}`);
+        return;
+    }
+
+    let resultMessage = `<h2>Alternate Routes from ${sourceCity} to ${destinationCity}:</h2>`;
+    alternateRoutes.forEach(route => {
+        const routeDetails = route.join(' -> ');
+        resultMessage += `<div class="route">Route: ${routeDetails}</div>`;
+    });
+
+    // Dijkstra’s algorithm
+    /*
+    const cheapestRoute = routeGraph.findCheapestPath(sourceCity, destinationCity);
+
+    if (cheapestRoute.cost !== undefined) {
+        resultMessage += `<h2>Cheapest Route:</h2>`;
+        resultMessage += `<div class="route">Route: ${cheapestRoute.path.join(' -> ')} <br> Total Cost: ${cheapestRoute.cost}</div>`;
+    } else {
+        resultMessage += `<h2>No Cheapest Route Found</h2>`;
+    }    */
+
+    crNot(resultMessage);
+}
+
+function generateTicketNumber() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const randomPart = Math.floor(Math.random() * 1000000);
+    return `${selectedFlight.flight.code}-${loggedInUser.CstID}-${randomPart}`;
 }
 
 document.getElementById('bookFlightButton').addEventListener('click', function() {
     if (!selectedFlight) {
-        createNotification("Please select a flight to book.");
+        crNot("Please select a flight to book.");
         return;
     }
 
-    if (greyedOutFlights.includes(selectedFlight.flight_number)) {
-        createNotification("Cannot book this flight due to bad weather conditions.", true);
+    if (greyedOutFlights.includes(selectedFlight.flight.number)) {
+        crNot("Cannot book this flight due to bad weather conditions.", true);
         return;
     }
 
-    const phone = prompt("Enter your phone number:");
-    const cnic = prompt("Enter your CNIC number:");
-    const numSeats = parseInt(prompt("Enter number of seats:"));
-    const seatClass = prompt("Enter seat class (Economy/Business/First):");
+    openBookingPopup(selectedFlight);
 
-    if (!phone || !cnic || isNaN(numSeats) || numSeats <= 0 || !seatClass) {
-        createNotification("Please provide valid information.");
-        return;
-    }
+    setTimeout(() => {
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const cnic = document.getElementById('cnic').value;
+            const numSeats = parseInt(document.getElementById('numSeats').value);
+            const seatClass = document.getElementById('seatClass').value;
 
-    const booking = {
-        userId: loggedInUser.CstID,
-        phone,
-        cnic,
-        numSeats,
-        seatClass,
-        flight: selectedFlight
-    };
+            const errorMessageDiv = document.getElementById('error-message');
+            errorMessageDiv.textContent = ''; // Clear previous error message if any
 
-    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-    bookings.push(booking);
+            // Validation
+            if (!firstName || !lastName || !email || !phone || !cnic || isNaN(numSeats) || numSeats <= 0 || !seatClass) {
+                errorMessageDiv.textContent = "Please provide valid information.";
+                errorMessageDiv.style.borderBottom = '2px solid red';
+                errorMessageDiv.style.color = 'red';
+                setTimeout(() => {
+                    errorMessageDiv.textContent = '';
+                    errorMessageDiv.style.borderBottom = 'none';
+                }, 3000);
+                return;
+            }
 
-    localStorage.setItem('bookings', JSON.stringify(bookings));
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            const ticketNumber = generateTicketNumber(); // Generate ticket number
+            const booking = {
+                ticketNumber,
+                userId: loggedInUser.CstID,
+                firstName,
+                lastName,
+                email,
+                phone,
+                cnic,
+                numSeats,
+                seatClass,
+                flight: selectedFlight
+            };
 
-    createNotification("Flight booked successfully!");
-    console.log("Booking Details:", booking);
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push(booking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
+            crNot("Flight booked successfully!");
+            console.log("Booking Details:", booking);
+
+            closePopup();
+        });
+    }, 100);
 });
 
 const button = document.getElementById('viewBookedFlightsButton');
 const userInfoSection = document.getElementById('userInfoSection');
 
-button.addEventListener('mouseover', function() {
+button.addEventListener('mouseover', function () {
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
     if (!loggedInUser) {
-        alert("You must be logged in to view booked flights.");
+        crNot("You must be logged in to view booked flights.");
         return;
     }
 
-    const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+    const userBookingsHtml = getUserBookingsHtml(loggedInUser);
 
-    const userBookings = bookings.filter(booking => booking.userId === loggedInUser.CstID);
-
-    if (userBookings.length === 0) {
-        alert("You have no booked flights.");
+    if (!userBookingsHtml) {
+        crNot("You have no booked flights.");
         return;
     }
 
-
-    let bookedFlightsHtml = `<h3>Your Customer ID: ${loggedInUser.CstID}</h3>`;
-    bookedFlightsHtml += `<ul>`;
-
-    userBookings.forEach(booking => {
-        bookedFlightsHtml += `
-            <li>
-                <strong>Flight: ${booking.flight.flight_code}</strong><br>
-                <strong>Airline:</strong> ${booking.flight.airline_name}<br>
-                <strong>From:</strong> ${booking.flight.dep_city}, ${booking.flight.dep_airport}<br>
-                <strong>To:</strong> ${booking.flight.arrv_city}, ${booking.flight.arrv_airport}<br>
-                <strong>Departure:</strong> ${booking.flight.dep_time}<br>
-                <strong>Arrival:</strong> ${booking.flight.arrv_time}<br>
-                <strong>Seats:</strong> ${booking.numSeats} ${booking.seatClass} class<br>
-                <strong>CNIC:</strong> ${booking.cnic}<br>
-                <strong>Phone:</strong> ${booking.phone}
-            </li>
-        `;
-    });
-
-    bookedFlightsHtml += `</ul>`;
-
-    userInfoSection.innerHTML = bookedFlightsHtml;
+    userInfoSection.innerHTML = userBookingsHtml;
     userInfoSection.style.display = 'block';
 });
 
 
-button.addEventListener('mouseleave', function() {
+userInfoSection.addEventListener('mouseenter', function () {
+    userInfoSection.style.display = 'block';
+});
+
+userInfoSection.addEventListener('mouseleave', function () {
     userInfoSection.style.display = 'none';
 });
 
-userInfoSection.addEventListener('mouseenter', function() {
-    userInfoSection.style.display = 'block';
+document.addEventListener('DOMContentLoaded', () => {
+    const inps = ['sourceInput', 'destinationInput', 'airlineInput', 'dateInput'];
+    inps.forEach(id => {
+        document.getElementById(id).addEventListener('input', filterFlights);
+    });
+    document.getElementById('startTrackingButton').addEventListener('click', startPriceTracking);
+    document.getElementById('forceUpdateButton').addEventListener('click', forcePriceUpdate);
+    document.getElementById('suggestRoutesButton').addEventListener('click', suggestRoute);
+    document.getElementById('checkWeatherForFlights').addEventListener('click', () => chkWeath4Flights(flights));
+    document.getElementById('minMaxTracking').addEventListener('click', () => minMaxTracking());
+    fetchFlights();
 });
-
-userInfoSection.addEventListener('mouseleave', function() {
-    userInfoSection.style.display = 'none'; 
-});
-
-
-// button stuff
-document.getElementById('checkWeatherForFlights').addEventListener('click', function() {checkWeatherForFlights(flights);});
-document.getElementById('sourceInput').addEventListener('input', filterFlights);
-document.getElementById('destinationInput').addEventListener('input', filterFlights);
-document.getElementById('airlineInput').addEventListener('input', filterFlights);
-document.getElementById('dateInput').addEventListener('input', filterFlights);
-document.getElementById('startTrackingButton').addEventListener('click', startPriceTracking);
-document.getElementById('forceUpdateButton').addEventListener('click', forcePriceUpdate);
-document.addEventListener('DOMContentLoaded', fetchFlights);

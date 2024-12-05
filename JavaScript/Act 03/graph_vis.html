@@ -66,7 +66,7 @@
 
     <script type="module">
         async function fetchFlightData() {
-            const response = await fetch('flights.json');
+            const response = await fetch('files/flights.json');
             const flights = await response.json();
             return flights;
         }
@@ -81,25 +81,25 @@
                 let depNode, arrNode, depLabel, arrLabel;
 
                 if (mode === 'city') {
-                    depNode = flight.dep_city;
-                    arrNode = flight.arrv_city;
-                    depLabel = flight.dep_city;
-                    arrLabel = flight.arrv_city;
+                    depNode = flight.departure.city;
+                    arrNode = flight.arrival.city;
+                    depLabel = flight.departure.city;
+                    arrLabel = flight.arrival.city;
                 } else if (mode === 'country') {
-                    depNode = flight.dep_country;
-                    arrNode = flight.arrv_country;
-                    depLabel = flight.dep_country;
+                    depNode = flight.departure.country;
+                    arrNode = flight.arrival.country;
+                    depLabel = flight.departure.country;
                     arrLabel = flight.arrv_country;
                 } else if (mode === 'airport') {
-                    depNode = flight.dep_airport;
-                    arrNode = flight.arrv_airport;
-                    depLabel = flight.dep_airport;
-                    arrLabel = flight.arrv_airport;
+                    depNode = flight.departure.airport;
+                    arrNode = flight.arrival.airport;
+                    depLabel = flight.departure.airport;
+                    arrLabel = flight.arrival.airport;
                 } else if (mode === 'price') {
                     depNode = flight.dep_country;
-                    arrNode = flight.arrv_country;
-                    depLabel = flight.dep_country;
-                    arrLabel = flight.arrv_country;
+                    arrNode = flight.arrival.country;
+                    depLabel = flight.departure.country;
+                    arrLabel = flight.arrival.country;
                 }
 
                 if (!nodeIds.has(depNode)) {
@@ -127,8 +127,8 @@
                     from: sourceId,
                     to: destId,
                     arrows: 'to', // Show arrow src-des
-                    label: `PKR ${flight.price_pkr}`, // Show price label
-                    title: `Flight: ${flight.flight_code}\nPrice: PKR ${flight.price_pkr}\nFrom: ${depLabel}\nTo: ${arrLabel}`
+                    label: `PKR ${flight.price}`, // Show price label
+                    title: `Flight: ${flight.flight.code}\nPrice: PKR ${flight.price}\nFrom: ${depLabel}\nTo: ${arrLabel}`
                 });
             });
 
@@ -158,7 +158,7 @@
                     }
                 },
                 physics: {
-                    enabled: true,
+                    enabled: false,
                     barnesHut: {
                         gravitationalConstant: -2000,
                         centralGravity: 0.3,
@@ -195,7 +195,7 @@
                         const connectedNodeId = edge.from === nodeId ? edge.to : edge.from; // Get connected node
                         const connectedNode = nodes.find(node => node.id === connectedNodeId);
                         const destinationLabel = connectedNode ? connectedNode.label : '';
-                        info += `\nTo: ${destinationLabel} - Price: ${edge.label}`; // Disp dest nm prc
+                        info += `\nwith: ${destinationLabel}`; // Disp dest nm prc
                     }
                 });
 
