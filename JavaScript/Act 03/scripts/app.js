@@ -177,13 +177,13 @@ function minMaxTracking() {
         const minPriceFlight = minMaxBST.findMin();
         const maxPriceFlight = minMaxBST.findMax();
 
-        console.log(`Cheapest flight: ${minPriceFlight.value} (PKR ${minPriceFlight.key})`);
-        console.log(`Most expensive flight: ${maxPriceFlight.value} (PKR ${maxPriceFlight.key})`);
+        crNot(`Cheapest flight: ${minPriceFlight.value} (PKR ${minPriceFlight.key})`);
+        crNot(`Most expensive flight: ${maxPriceFlight.value} (PKR ${maxPriceFlight.key})`);
     } else {
-        console.log("No flights match the selected criteria.");
+        crNot("No flights match the selected criteria.");
         return;
     }  
-    }, 1000);
+    }, 3000);
     crNot("Min-Max Started");
     MinMaxTracking = true;
 }
