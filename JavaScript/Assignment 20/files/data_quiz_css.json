@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "question": "What does CSS stand for?",
+      "options": [
+        "Cascading Style Sheets",
+        "Computer Style Sheets",
+        "Creative Style Sheets",
+        "Colorful Style Sheets"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which CSS property is used to change the text color?",
+      "options": [
+        "color",
+        "font-color",
+        "text-color",
+        "background-color"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which property is used to change the font size of text in CSS?",
+      "options": [
+        "font-size",
+        "text-size",
+        "font-style",
+        "text-font"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "How do you apply a background color to an HTML element in CSS?",
+      "options": [
+        "background-color",
+        "bg-color",
+        "color-background",
+        "background"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which of the following is used to select an element with a specific class in CSS?",
+      "options": [
+        ".class-name",
+        "#class-name",
+        "$class-name",
+        "@class-name"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which property is used to set the space between text lines in CSS?",
+      "options": [
+        "line-height",
+        "text-spacing",
+        "letter-spacing",
+        "word-spacing"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "How can you make a text bold in CSS?",
+      "options": [
+        "font-weight",
+        "font-style",
+        "text-transform",
+        "font-size"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which CSS property is used to change the visibility of an element?",
+      "options": [
+        "visibility",
+        "opacity",
+        "display",
+        "hidden"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "How do you select all the elements in a webpage using CSS?",
+      "options": [
+        "*",
+        "all",
+        "body",
+        "html"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which CSS property controls the space between the content and the border of an element?",
+      "options": [
+        "padding",
+        "margin",
+        "border-spacing",
+        "spacing"
+      ],
+      "Answer": 0
+    }
+  ]
+}

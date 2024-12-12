@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .result {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .score {
+            font-size: 36px;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="result">
+        <p>Your Score:</p>
+        <p id="score" class="score"></p>
+        <p id="percentage"></p>
+    </div>
+    <button onclick="window.location.href='index.html'">Go Back</button>
+
+    <script>
+        window.onload = function() {
+            const result = JSON.parse(localStorage.getItem('quizResult'));
+            if (result) {
+                document.getElementById('score').textContent = `${result.score} out of ${result.total}`;
+                document.getElementById('percentage').textContent = `Your Score: ${result.percentage.toFixed(2)}%`;
+            } else {
+                alert('No result found!');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

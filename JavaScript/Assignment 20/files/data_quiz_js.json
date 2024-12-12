@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "question": "What does JavaScript do?",
+      "options": [
+        "Makes the web page interactive",
+        "Styles the web page",
+        "Structures the web page",
+        "None of the above"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which company developed JavaScript?",
+      "options": [
+        "Microsoft",
+        "Netscape",
+        "Google",
+        "Mozilla"
+      ],
+      "Answer": 1
+    },
+    {
+      "question": "What does the `alert()` function do in JavaScript?",
+      "options": [
+        "Displays a popup message",
+        "Adds a class to an element",
+        "Changes the text content of an element",
+        "Saves data to a database"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which of the following is the correct way to define a function in JavaScript?",
+      "options": [
+        "function myFunction() {}",
+        "function: myFunction() {}",
+        "def myFunction() {}",
+        "myFunction() function {}"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which of these is a valid JavaScript variable name?",
+      "options": [
+        "myVariable",
+        "2myVariable",
+        "@myVariable",
+        "my Variable"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "How do you create a comment in JavaScript?",
+      "options": [
+        "// This is a comment",
+        "# This is a comment",
+        "/* This is a comment */",
+        "!! This is a comment"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which method is used to add an element to an array in JavaScript?",
+      "options": [
+        "push()",
+        "add()",
+        "append()",
+        "insert()"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which operator is used to compare both value and type in JavaScript?",
+      "options": [
+        "===",
+        "==",
+        "<>",
+        "!="
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "What does `document.getElementById('id')` do in JavaScript?",
+      "options": [
+        "Selects an element with the specified id",
+        "Gets the value of an input field with the specified id",
+        "Changes the id of the selected element",
+        "Adds an event listener to the element with the specified id"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which keyword is used to declare a variable in JavaScript?",
+      "options": [
+        "var",
+        "let",
+        "const",
+        "All of the above"
+      ],
+      "Answer": 3
+    }
+  ]
+}

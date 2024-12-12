@@ -1,0 +1,104 @@
+{
+  "questions": [
+    {
+      "question": "What does HTML stand for?",
+      "options": [
+        "HyperText Markup Language", 
+        "HyperTool Markup Language", 
+        "Home Tool Markup Language", 
+        "Hyperlink Text Markup Language"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which tag is used to define an HTML document?",
+      "options": [
+        "&lt;head&gt;", 
+        "&lt;body&gt;", 
+        "&lt;html&gt;", 
+        "&lt;section&gt;"
+      ],
+      "Answer": 2
+    },
+    {
+      "question": "What does the &lt;br&gt; tag do?",
+      "options": [
+        "Creates a hyperlink", 
+        "Inserts a line break", 
+        "Defines a paragraph", 
+        "Creates an image"
+      ],
+      "Answer": 1
+    },
+    {
+      "question": "Which tag is used to create a link in HTML?",
+      "options": [
+        "&lt;a&gt;", 
+        "&lt;link&gt;", 
+        "&lt;href&gt;", 
+        "&lt;url&gt;"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "What tag is used to define a paragraph in HTML?",
+      "options": [
+        "&lt;div&gt;", 
+        "&lt;p&gt;", 
+        "&lt;section&gt;", 
+        "&lt;article&gt;"
+      ],
+      "Answer": 1
+    },
+    {
+      "question": "Which tag is used to insert an image in HTML?",
+      "options": [
+        "&lt;img&gt;", 
+        "&lt;picture&gt;", 
+        "&lt;image&gt;", 
+        "&lt;src&gt;"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "What tag is used to define the header of a webpage?",
+      "options": [
+        "&lt;header&gt;", 
+        "&lt;h1&gt;", 
+        "&lt;title&gt;", 
+        "&lt;head&gt;"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "Which tag is used to define an unordered list in HTML?",
+      "options": [
+        "&lt;ul&gt;", 
+        "&lt;ol&gt;", 
+        "&lt;list&gt;", 
+        "&lt;li&gt;"
+      ],
+      "Answer": 0
+    },
+    {
+      "question": "What does the &lt;strong&gt; tag do in HTML?",
+      "options": [
+        "Defines a bold text", 
+        "Defines a strong emphasis", 
+        "Defines a heading", 
+        "Defines italic text"
+      ],
+      "Answer": 1
+    },
+    {
+      "question": "What is the purpose of the &lt;meta&gt; tag in HTML?",
+      "options": [
+        "To define metadata about the document", 
+        "To define the footer of a webpage", 
+        "To create hyperlinks", 
+        "To create a form"
+      ],
+      "Answer": 0
+    }
+  ]
+}

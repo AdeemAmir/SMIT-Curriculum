@@ -5,14 +5,14 @@ const nmn = '0123456789';
 let fallback = '';
 for (let i = 0; i < text.length; i++) {let a = text[i];
 if (alphL.includes(a)) {
-const index = (alphL.indexOf(a) + shift + 26) % 26; 
-fallback += alphL[index];
+const lf = (alphL.indexOf(a) + shift + 26) % 26; 
+fallback += alphL[lf];
 }else if (alphU.includes(a)) {
-const index = (alphU.indexOf(a) + shift + 26) % 26;
-fallback += alphU[index];
+const lf = (alphU.indexOf(a) + shift + 26) % 26;
+fallback += alphU[lf];
 }else if (nmn.includes(a)) {
-const index = (nmn.indexOf(a) + shift + 10) % 10; 
-fallback += nmn[index];
+const lf = (nmn.indexOf(a) + shift + 10) % 10; 
+fallback += nmn[lf];
 }else {fallback += a;}}return fallback;}
 export async function apiCall() {try {
         const rez = await fetch('files/file');

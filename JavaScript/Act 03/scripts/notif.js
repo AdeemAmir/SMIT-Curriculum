@@ -11,7 +11,7 @@ export function crNot(message) {
     notDiv.classList.add('notif');
 
     const notDetails = document.createElement('div');
-    notDetails.innerHTML = message;  // Using innerHTML to allow HTML tags like <h2>, <div>, etc.
+    notDetails.innerHTML = message;  // innerHTML to allow HTML tags like <h2>, <div>, etc.
 
     const closeButton = document.createElement('span');
     closeButton.classList.add('close-btn');

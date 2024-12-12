@@ -5,33 +5,49 @@ const iconClose = document.querySelector('.icon-close');
 const loginStatus = document.getElementById('login-status');
 
 document.addEventListener('DOMContentLoaded', function() {
-    const totalImages = 23;
-    const formats = ['jpg', 'jpeg', 'png', 'gif']; 
+    const totalImages = 3;
+    const formats = ['jpg', 'jpeg', 'png', 'gif','avif']; 
     const images = [];
-
-    for (let i = 1; i <= totalImages; i++) {
-        let exists = false;
-        
-        for (let format of formats) {
-            const imageUrl = `files/live${i}.${format}`;
-            console.log(imageUrl);
-            if (checkImageExists(imageUrl)) {
-                images.push(imageUrl);
-                exists = true;
-                break;
-            }
-        }}
-
-    function checkImageExists(imageUrl) {
-        return fetch(imageUrl, { method: 'HEAD' })
-            .then(response => response.ok)
-            .catch(() => false);
+    async function checkImageExists(imageUrl) {
+        try {
+            const response = await fetch(imageUrl, { method: 'HEAD' });
+            return response.ok;
+        } catch {
+            return false;
+        }
     }
 
-    const randomIndex = Math.floor(Math.random() * images.length);
-    document.body.style.backgroundImage = `url(${images[randomIndex]})`;
+    async function loadImages() {
+        for (let i = 1; i <= totalImages; i++) {
+            let exists = false;
+            
+            for (let format of formats) {
+                const imageUrl = `files/live${i}.${format}`;
+                console.log(`Checking: ${imageUrl}`);
+                
+                if (await checkImageExists(imageUrl)) {
+                    images.push(imageUrl);
+                    exists = true;
+                    break;
+                }
+            }
+            
+            if (!exists) {
+                console.log(`No valid image found for live${i}`);
+            }
+        }
 
+        if (images.length > 0) {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            document.body.style.backgroundImage = `url(${images[randomIndex]})`;
+        } else {
+            console.log('No valid images found.');
+        }
+    }
+
+    loadImages();
 });
+
 
 
 window.onload = function() {
@@ -44,7 +60,7 @@ window.onload = function() {
         wrapper.style.border = "2px solid green";
         wrapper.style.boxShadow = "0 0 30px rgba(0, 255, 0, 0.5)"; 
         setTimeout(() => {
-            window.location.href = "hero.html";
+            window.location.href = "options.html";
         }, 4321);
     } else {
         loginStatus.textContent = "Not Logged In";
@@ -66,15 +82,11 @@ loginLink.addEventListener('click', () => {
   wrapper.classList.remove('active');
 });
 
-/*iconClose.addEventListener('click', () => {
-  wrapper.classList.remove('active-popup');
-}); FOR THE X ICON*/ 
-
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    // Generate unique CstID :P
-    const CstID = Date.now();
+    // Generate unique UserID :P
+    const UserID = Date.now();
     const username = document.getElementById("signup-username").value;
     const password = document.getElementById("signup-password").value;
     const email = document.getElementById("signup-email").value;
@@ -94,7 +106,7 @@ document.getElementById("signupForm").addEventListener("submit", function(e) {
         return;
     }
 
-    const newUser = { username, password, email, CstID };
+    const newUser = { username, password, email, UserID };
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 
@@ -121,5 +133,5 @@ document.getElementById("loginForm").addEventListener("submit", function(e) {
 
     localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-    window.location.href = "hero.html";
+    window.location.href = "options.html";
 });
