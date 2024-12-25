@@ -19,7 +19,7 @@ function gotoHome() {
     window.location.href = 'https://adeemamir.github.io/SMIT-Curriculum'
 }
 
-import { dbg, dbgLogging, activateDebugging } from '../JSCommon/debug.mjs';
+import { dbg, dbgLogging, activateDebugging } from '../CommonJS/debug.mjs';
 activateDebugging(true)
 dbg("test")
 
