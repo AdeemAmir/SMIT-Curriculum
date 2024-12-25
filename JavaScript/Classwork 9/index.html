@@ -4,27 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classwork 7</title>
+    <title>ClassWork 9 11/29/24</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .question button {
+            margin-top:5px;
+        }
+        #popUpMessage {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
-<link rel="stylesheet" href="../style.css">
+
 <body>
     <div class="watermark">Code by Adeem Amir</div>
-    <div class="question"><h1>Classwork 7 - Done Alongside Instructor</h1></div>
+    <div class="question"><h1>Classwork 9 - Done Alongside Instructor</h1></div>
 
-    <div class="question">
-        <h2>1. Label</h2>
-        <div class="output" style = "background-color: #333;"id="cOutp2"></div>
-        <label>Student Name
-            <input id='anme'type="text">
-        </label>
-        <button type="submit" onclick="name">
-            Submit
-        </button>
+        <button onclick="openMonkeyWindow()">Open Monkey Info</button>
+        <button onclick="openFaqPage()">Open FAQ Page</button>
+        <button onclick="checkForPopBlocker()">Check for Pop-up Blocker</button>
+        <p id="popUpMessage"></p>
 
         <!--button onclick="getRandomDecimal()">Check</button-->
-        <div class="output" id="cOutp1"></div>
+
     </div>
 
+
+    
     <!--div class="question">
         <h2>1. Random Between 6-8</h2>
         <div class="output" style = "background-color: #333;"id="cOutp2"></div>
@@ -97,6 +104,6 @@
         <button class='sp_button' onclick="gotoHome()">Home</button>
         
     </div>
-    <script src="./script.mjs"></script>
+    <script src="./script.js"></script>
 </body>
 </html>

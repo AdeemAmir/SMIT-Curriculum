@@ -1,0 +1,199 @@
+/*STYLE BY ADEEM AMIR*/
+body {
+    font-family: 'Times New Roman', serif;
+    background: linear-gradient(to right, #f4e8ff, #f9f9fd, #dcdcff);
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container_ovr {
+max-width: none;
+margin-bottom: 20px;        
+}        
+
+.question {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.question_gap {
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+}
+
+button {
+    /* background: linear-gradient(to right, #c83ccd, #4a00e0); */
+    background: linear-gradient(to right, #c83ccd, #4a00e0, #00d2ff);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0px 0px 5px 5px;
+    /*width: fit-content;*/
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.sp_body {
+    font-family: 'Times New Roman', serif;
+    background-color: #e7f3ff;
+    color: #333;
+    text-align: center;
+    padding: 50px;
+}
+
+.sp_h1 {
+    color: #007bff;
+    font-size: 40px;
+}
+
+.sp_inp {
+    padding: 10px;
+    margin: 10px 0;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sp_inp40 {
+    width: 40%;
+}
+
+.sp_select {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.sp_button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sp_button:hover {
+    background-color: #0056b3;
+}
+
+.sp_cOutp1 {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+
+.defInp {
+    width: 50%;
+    padding: 5px 15px;
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.defInp:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.defInp::placeholder {
+    color: #aaa;
+    opacity: 1;
+}
+
+.short-input {
+    width: 80px;
+    padding: 5px;
+}
+
+.long-input {
+    width: calc(100% - 45px);
+}
+
+.segment-input {
+    width: 200px; /*Might not be needed*/
+    padding: 10px;
+}
+
+.output {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #eaeaea; 
+    color: #0f0;
+    font-family: 'Comic Sans MS', cursive;
+    height: fit-content;
+    width: 97%;
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+}
+
+.output-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+.output_ovr {
+    background-color: black; 
+}
+
+.output.active {
+    background-color: black;
+}
+
+.backbutt_loc{
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    /*z-index: 1000;*/ /*Over All Content.*/
+}
+
+.backbutt_mod{
+    background-color: rgba(185, 186, 186, 0.5);
+    color: #333;
+    border: none;
+    padding: 5px 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.backbutt_mod:hover {
+    background-color: rgba(170, 170, 170, 0.7); /* change bg on hover. */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* better shadow*/
+}
+
+.backbutt_mod:focus {
+    outline: none; /*rem base outln*/
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5); /* cstm fcs outln */
+}
+
+.watermark { position: fixed; bottom: 10px;right: 28px; font-size: 14px; color: rgba(141, 141, 141, 0.5); pointer-events: none; }

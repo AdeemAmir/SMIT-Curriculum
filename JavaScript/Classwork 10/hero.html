@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Display</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Styling for product display */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #productsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .price {
+            color: #27ae60;
+            font-size: 1.25rem;
+            margin-top: 10px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Loading state styling */
+        .loading {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Product Display</h1>
+        <p>Browse our collection of amazing products!</p>
+
+        <!-- Display loading message while products are being fetched -->
+        <div id="loading" class="loading">Loading products...</div>
+
+        <!-- Products will be dynamically inserted here -->
+        <div id="productsContainer"></div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>
