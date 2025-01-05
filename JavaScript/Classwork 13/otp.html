@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification</title>
+  <link rel="stylesheet" href="otp.css">
+</head>
+<body>
+  <div class="watermark">Code by Adeem Amir</div>
+  <div class="container">
+    <h2>OTP Verification</h2>
+
+    <div class="email-container">
+      <label for="emailForOtp">Enter your Email:</label>
+      <input type="email" id="emailForOtp" placeholder="Enter your email" required>
+      <button class="otp_btn" id="sendOtpEmail_btn">Send OTP</button>
+    </div>
+
+    <div class="otp-container">
+      <label>Enter OTP:</label>
+      <div id="otp-box" class="otp-box">
+        <input type="text" maxlength="1" class="otp-input" id="otp1" />
+        <input type="text" maxlength="1" class="otp-input" id="otp2" />
+        <input type="text" maxlength="1" class="otp-input" id="otp3" />
+        <input type="text" maxlength="1" class="otp-input" id="otp4" />
+        <input type="text" maxlength="1" class="otp-input" id="otp5" />
+        <input type="text" maxlength="1" class="otp-input" id="otp6" />
+      </div>
+      <button class="otp_btn" id="veriftOtpEmail_btn">Verify OTP</button>
+    </div>
+    <div class="output" id="output"></div>
+  </div>
+  <div class="backbutt_loc">
+    <button class='backbutt_mod' id="backButton">Back</button>
+    <button class='backbutt_mod' id="homeButton">Home</button>
+</div>
+</body>
+<script type="module" src="otp.js"></script>
+</html>
